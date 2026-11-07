@@ -1,0 +1,151 @@
+{
+  "url": "https://knights-converter-shorts-prints.trycloudflare.com",
+  "date": "2026-10-25",
+  "mode": "temporary HTTPS test instance",
+  "checks": {
+    "api_state_status": 200,
+    "secure_cookie": true,
+    "no_store": true,
+    "frame_denied": true,
+    "nosniff": true,
+    "csp_present": true,
+    "no_tokens_in_api_state": true,
+    "/.env.integration_not_served": true,
+    "/src/server/index.ts_not_served": true,
+    "/@vite/client_not_served": true
+  },
+  "client": {
+    "created": true,
+    "type": "private/server",
+    "scopes": [
+      "account:read",
+      "posts:read",
+      "posts:write"
+    ],
+    "id_configured": true,
+    "secret_configured": true,
+    "callback": "https://knights-converter-shorts-prints.trycloudflare.com/api/auth/callback",
+    "privacy": "https://knights-converter-shorts-prints.trycloudflare.com/privacy",
+    "oauth_grant": "completed successfully with owner consent",
+    "live_api_calls": "account, channels and bounded posts reads returned HTTP 200",
+    "refresh": "refresh token stored encrypted; refresh rotation not exercised live"
+  },
+  "environment_mode": "0o600",
+  "live": {
+    "connections": [
+      {
+        "status": "connected",
+        "encryptedTokensStored": true,
+        "refreshTokenPresent": true,
+        "scopes": [
+          "account:read",
+          "posts:read",
+          "posts:write",
+          "offline_access"
+        ],
+        "organizationCount": 1,
+        "selectedOrganization": true,
+        "channelCount": 1,
+        "receipts": [
+          {
+            "at": "2026-10-25T07:02:34.142Z",
+            "operation": "account",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          },
+          {
+            "at": "2026-10-25T07:03:19.971Z",
+            "operation": "account",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          },
+          {
+            "at": "2026-10-25T07:03:21.088Z",
+            "operation": "channels",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          },
+          {
+            "at": "2026-10-25T07:32:05.630Z",
+            "operation": "account",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          },
+          {
+            "at": "2026-10-25T07:32:07.107Z",
+            "operation": "channels",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          },
+          {
+            "at": "2026-10-25T07:32:45.703Z",
+            "operation": "posts",
+            "kind": "read",
+            "httpStatus": 200,
+            "outcome": "response"
+          }
+        ]
+      }
+    ],
+    "operationCount": 0,
+    "liveWriteFormatsEnabled": false,
+    "channelCount": 1,
+    "postImport": "successful empty result",
+    "receipts": [
+      {
+        "at": "2026-10-25T07:02:34.142Z",
+        "operation": "account",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "at": "2026-10-25T07:03:19.971Z",
+        "operation": "account",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "at": "2026-10-25T07:03:21.088Z",
+        "operation": "channels",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "at": "2026-10-25T07:32:05.630Z",
+        "operation": "account",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "at": "2026-10-25T07:32:07.107Z",
+        "operation": "channels",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "at": "2026-10-25T07:32:45.703Z",
+        "operation": "posts",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      }
+    ]
+  },
+  "publicSampleEntry": "opened through HTTPS; persisted fictional sample loaded",
+  "connection_restart_persistence": true,
+  "channel_connection_attempt": {
+    "result": "Himanshu jha Page connected after explicit restricted-grant approval",
+    "channel_connected": true,
+    "post_mutations": false
+  }
+}

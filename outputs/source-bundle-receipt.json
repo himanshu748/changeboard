@@ -1,0 +1,14 @@
+{
+  "files": 57,
+  "bytes": 199646,
+  "sha256": "52d0d872cf5a16c4f763f2096c5c4b1a368703f41182a8014a6530124d00acf9",
+  "excluded": [
+    ".env",
+    ".env.integration",
+    "work/",
+    "node_modules/",
+    "browser profiles",
+    "database records"
+  ],
+  "configured_secret_values_absent": true
+}

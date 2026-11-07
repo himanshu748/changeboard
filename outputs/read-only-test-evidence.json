@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-25",
+  "url": "https://knights-converter-shorts-prints.trycloudflare.com",
+  "connectedPage": "Himanshu jha",
+  "metaGrant": {
+    "confirmedByUser": true,
+    "selectedPageOnly": true,
+    "enabledLabels": [
+      "Name and profile picture",
+      "Read content posted on the Page",
+      "Show a list of the Pages you manage"
+    ],
+    "otherRequestedPermissionsDisabled": true
+  },
+  "channels": [
+    {
+      "service": "facebook",
+      "type": "page",
+      "timezone": "Asia/Kolkata",
+      "isDisconnected": false,
+      "isLocked": false
+    }
+  ],
+  "receipts": [
+    {
+      "at": "2026-10-25T07:02:34.142Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    },
+    {
+      "at": "2026-10-25T07:03:19.971Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    },
+    {
+      "at": "2026-10-25T07:03:21.088Z",
+      "operation": "channels",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    },
+    {
+      "at": "2026-10-25T07:32:05.630Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    },
+    {
+      "at": "2026-10-25T07:32:07.107Z",
+      "operation": "channels",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    },
+    {
+      "at": "2026-10-25T07:32:45.703Z",
+      "operation": "posts",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response"
+    }
+  ],
+  "postReads": [
+    {
+      "httpStatus": 200,
+      "queryOnly": true,
+      "pageSize": 20,
+      "channelFilterCount": 1,
+      "selectedChannelOnly": true,
+      "statuses": [
+        "draft",
+        "scheduled",
+        "sent"
+      ],
+      "returnedPosts": 0,
+      "hasNextPage": false,
+      "endCursorPresent": false
+    }
+  ],
+  "bufferUiCounts": {
+    "queue": 0,
+    "drafts": 0,
+    "sent": 0
+  },
+  "localCampaigns": [
+    {
+      "availablePosts": 0,
+      "selectedPosts": 0,
+      "stage": "choose"
+    }
+  ],
+  "operationCount": 0,
+  "postWriteCalls": 0,
+  "liveWriteFormatsEnabled": false,
+  "refreshRegression": {
+    "beforeFix": "failed: cached empty list hid the new channel",
+    "afterFix": "passed: explicit organization selection forces fresh discovery",
+    "suite": "79 tests passed in five files",
+    "build": "passed: strict TypeScript and Vite"
+  },
+  "limits": [
+    "No nonempty post content to compare",
+    "Nonempty pagination not exercised",
+    "No post mutations authorized or performed",
+    "Meta Page grant excludes publishing",
+    "Temporary HTTPS hosting only"
+  ],
+  "emptyImportRestartPersistence": true
+}

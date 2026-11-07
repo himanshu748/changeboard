@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-25",
+  "status": "local MVP verified; owned Facebook Page connected; live bounded empty post read verified",
+  "url": "http://127.0.0.1:4310",
+  "automated": {
+    "tests": 79,
+    "files": 5,
+    "passed": 79,
+    "command": "npm test -- --maxWorkers=1",
+    "layers": {
+      "domain": 33,
+      "buffer_adapter_simulated": 16,
+      "connections_sql_simulated_provider": 8,
+      "server_http_sql": 10,
+      "worker_sql_simulated_gateway": 12
+    }
+  },
+  "build": "passed: TypeScript strict + Vite production",
+  "format": "passed: Prettier check",
+  "npm_audit": "0 known vulnerabilities at final install",
+  "browser": {
+    "engine": "installed Chromium via Playwright CLI; initial in-app browser inspection",
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      375,
+      812
+    ],
+    "mobile_scroll_width": 375,
+    "reduced_motion": true,
+    "sample_apply_verified": true,
+    "conflict_withheld": true,
+    "skips_still_scheduled_visible": true,
+    "separate_correction_draft": true,
+    "second_change_reused_bindings": true,
+    "reload_persistence": true,
+    "keyboard_outline": "3px solid at eight Tab stops",
+    "keyboard_dialog": "Enter open, Escape close",
+    "alerts": [],
+    "process_restart_persistence": true
+  },
+  "live": {
+    "buffer_sign_in": "observed",
+    "email_verification": "gate cleared; app-client form accessible",
+    "app_client": "created private client with account:read, posts:read, posts:write",
+    "channels": "one connected Facebook Page: Himanshu jha",
+    "oauth_to_changeboard": "successful with approved offline_access grant",
+    "api_calls": "6 read queries HTTP 200: account 3, channels 2, posts 1",
+    "mutations": "none; zero queued operations; all live formats disabled",
+    "public_deployment": "authorized temporary HTTPS test endpoint; no durable hosting",
+    "second_account": "not run",
+    "pending_confirmation": null,
+    "gmail": "not accessed; email gate had cleared",
+    "temporary_url": "https://knights-converter-shorts-prints.trycloudflare.com",
+    "credential_storage": "ignored .env.integration, mode 0600; values not displayed",
+    "restart_persistence": true,
+    "post_import": "bounded empty result; Buffer UI queue/drafts/sent each zero",
+    "meta_grant": "selected Page only; public profile, Page listing and Page-content reads",
+    "empty_import_restart_persistence": true
+  },
+  "boundaries": [
+    "All implementation is pre-window work",
+    "No paid service or upgrade",
+    "No commit or push",
+    "No external post, message or contest submission",
+    "No live video or three-user validation"
+  ],
+  "screenshots": [
+    "screenshots/01-choose-desktop.png",
+    "screenshots/02-facts-desktop.png",
+    "screenshots/03-review-unresolved-desktop.png",
+    "screenshots/04-conflict-desktop.png",
+    "screenshots/05-results-desktop.png",
+    "screenshots/06-results-mobile.png",
+    "screenshots/07-second-change-mobile.png",
+    "screenshots/08-second-result-mobile.png",
+    "screenshots/09-mobile-viewport.png",
+    "screenshots/10-final-desktop.png",
+    "screenshots/11-buffer-client-review.png",
+    "screenshots/12-buffer-client-created.png",
+    "screenshots/13-buffer-consent-review.png",
+    "screenshots/14-live-buffer-connected.png",
+    "screenshots/16-meta-readonly-consent.png",
+    "screenshots/17-buffer-page-connected.png",
+    "screenshots/18-live-empty-import.png"
+  ],
+  "channel_connection_attempt": {
+    "result": "connected after explicit restricted Meta grant approval",
+    "channel_connected": true,
+    "post_mutations": false
+  },
+  "refresh_regression": {
+    "reproduced": true,
+    "fixed": true,
+    "tests": "79 passed",
+    "build": "passed"
+  }
+}

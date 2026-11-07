@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS users (id text PRIMARY KEY, buffer_user_id text UNIQUE, active_campaign_id text, created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS sessions (id text PRIMARY KEY, user_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE, csrf text NOT NULL, expires_at timestamptz NOT NULL, oauth jsonb);
+CREATE TABLE IF NOT EXISTS connections (user_id text PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, data jsonb NOT NULL);
+CREATE TABLE IF NOT EXISTS campaigns (id text PRIMARY KEY, user_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE, data jsonb NOT NULL, updated_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX IF NOT EXISTS campaign_owner ON campaigns(user_id);
+CREATE TABLE IF NOT EXISTS fact_revisions (campaign_id text NOT NULL REFERENCES campaigns(id) ON DELETE CASCADE, revision integer NOT NULL, facts jsonb NOT NULL, created_at timestamptz NOT NULL DEFAULT now(), PRIMARY KEY(campaign_id, revision));
+CREATE TABLE IF NOT EXISTS changesets (id text PRIMARY KEY, campaign_id text NOT NULL REFERENCES campaigns(id) ON DELETE CASCADE, user_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE, data jsonb NOT NULL, applied boolean NOT NULL DEFAULT false);
+CREATE TABLE IF NOT EXISTS operations (id text PRIMARY KEY, campaign_id text NOT NULL REFERENCES campaigns(id) ON DELETE CASCADE, user_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE, unique_key text NOT NULL UNIQUE, status text NOT NULL CHECK(status IN ('pending','running','succeeded','needs_review','failed','skipped','uncertain')), data jsonb NOT NULL, lease_until timestamptz, created_at timestamptz NOT NULL DEFAULT now());
+CREATE INDEX IF NOT EXISTS operation_jobs ON operations(status, created_at);
+CREATE TABLE IF NOT EXISTS sample_remote (user_id text NOT NULL REFERENCES users(id) ON DELETE CASCADE, post_id text NOT NULL, data jsonb NOT NULL, PRIMARY KEY(user_id,post_id));
+CREATE TABLE IF NOT EXISTS assets (id text PRIMARY KEY, user_id text REFERENCES users(id) ON DELETE SET NULL, mime text NOT NULL, bytes bytea NOT NULL, alt_text text NOT NULL, retained boolean NOT NULL DEFAULT false, created_at timestamptz NOT NULL DEFAULT now());
