@@ -1,0 +1,45 @@
+CHANGEBOARD — LIVE BUFFER DEMONSTRATION
+114 seconds. Captioned, no audio. Actual browser captures with edited timing.
+Fictional content; real Buffer draft and API calls.
+Public app: https://changeboard.52.202.25.181.sslip.io
+
+0s — THE PROBLEM
+When a workshop's venue changes, old captions still point to the old plan.
+Changeboard connects event facts to exact phrases in posts already written.
+
+8s — LIVE BUFFER DRAFT
+This real draft already has one verified repair. Now the venue moves again.
+Fictional test content. Real API operations. The draft is never published.
+
+16s — REUSE THE CONFIRMED PHRASE
+The exact venue association is retained for the next change.
+Manual confirmation connects the event fact to a precise span in the caption.
+
+30s — REVIEW THE PRECISE CHANGE
+Garden Studio to River Studio. The date, time and remaining words stay unchanged.
+Only one explicitly validated draft and channel are eligible for caption edits.
+
+47s — APPROVE ONE DRAFT REPAIR
+The worker re-fetches the source, edits the approved caption and verifies readback.
+This is the captured apply step; edited timing is not a latency measurement.
+
+51s — VERIFIED APPLICATION RESULT
+Updated and verified. The new caption is saved with its individual outcome.
+One application attempt succeeded. Nothing was scheduled, published or deleted.
+
+64s — INDEPENDENT BUFFER READBACK
+Buffer shows River Studio: Unscheduled / Draft. Queue 0. Sent 0.
+The Page and test draft are the same ones used in the approved preview.
+
+80s — ORDINARY OAUTH · REAL READS
+The connection keeps credentials encrypted. Fresh post reads returned HTTP 200.
+Read receipts are separate from a verified write outcome.
+
+94s — HAND OFF THE RECORDED OUTCOME
+Download the repair report to hand over the reviewed change and saved result.
+The report records application state; it is not a new provider check.
+
+105s — NOVEMBER ADDITIONS
+Guided review, report downloads, durable hosting and scoped live-write proof.
+Try the account-free sample separately. Image/conflict outcomes there are simulated.
+

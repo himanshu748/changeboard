@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-08T12:15:38.621Z",
+  "verified": true,
+  "applicationRepairsOnSameFixture": 2,
+  "recordingRepair": {
+    "status": "succeeded",
+    "attempts": 1,
+    "before": "Changeboard test only \u2014 Fictional workshop at Garden Studio. Do not publish.",
+    "after": "Changeboard test only \u2014 Fictional workshop at River Studio. Do not publish.",
+    "createdAt": "2026-11-08T12:09:51.736Z",
+    "updatedAt": "2026-11-08T12:09:52.527Z"
+  },
+  "providerReadback": {
+    "text": "Changeboard test only \u2014 Fictional workshop at River Studio. Do not publish.",
+    "status": "draft",
+    "dueAt": null,
+    "sentAt": null,
+    "assets": 0,
+    "tags": 0,
+    "unrelatedFieldsPreserved": true
+  },
+  "onlyOneAdditionalCaptionMutation": true,
+  "newDraftsCreated": 0,
+  "scheduledOrPublished": 0,
+  "scopeExpanded": false,
+  "workerSemanticsChanged": false,
+  "runtimeCommit": "33ce5c21265c9fc0ce201794eb89f93f3a968e0b"
+}
