@@ -1,0 +1,61 @@
+name: changeboard
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: changeboard-db
+    restart: unless-stopped
+    mem_limit: 128m
+    memswap_limit: 128m
+    cpus: 0.25
+    environment:
+      POSTGRES_DB: changeboard
+      POSTGRES_USER: changeboard
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a database password outside the repository}
+    command:
+      - postgres
+      - -c
+      - shared_buffers=16MB
+      - -c
+      - max_connections=16
+      - -c
+      - work_mem=2MB
+      - -c
+      - maintenance_work_mem=16MB
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - database
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U changeboard -d changeboard]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  app:
+    image: ${CHANGEBOARD_IMAGE:?Set the deployed commit image}
+    container_name: changeboard-app
+    restart: unless-stopped
+    mem_limit: 384m
+    memswap_limit: 384m
+    cpus: 0.5
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4310
+      DATABASE_URL: postgresql://changeboard:${POSTGRES_PASSWORD:?Set a database password}@db:5432/changeboard
+      APP_ORIGIN: ${APP_ORIGIN:?Set the stable HTTPS origin}
+      TOKEN_ENCRYPTION_KEY: ${TOKEN_ENCRYPTION_KEY:?Set the encryption key}
+      BUFFER_CLIENT_ID: ${BUFFER_CLIENT_ID:?Set the existing Buffer client}
+      BUFFER_CLIENT_SECRET: ${BUFFER_CLIENT_SECRET:?Set the existing Buffer client secret}
+      BUFFER_REDIRECT_URI: ${BUFFER_REDIRECT_URI:?Set the exact HTTPS callback}
+    networks:
+      - database
+      - frontend
+networks:
+  database:
+    internal: true
+  frontend:
+volumes:
+  postgres-data:
