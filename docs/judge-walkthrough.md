@@ -80,3 +80,7 @@ The public static judge guide is linked from the app footer and README. It gives
 ### Registration and demo completed later November 8
 
 The owner completed registration and confirmed solo status; the official thank-you page and unlocked form were observed. The prepared form contains the owner-provided legal identity privately, public app/video URLs, client ID, 306-word summary, existing-project/build-window disclosure and no invented build-in-public trail. It is paused at the required terms question, without acceptance or final submission. [Current progress](../outputs/submission-progress-evidence.json). Earlier registration-gated and no-video observations above are dated snapshots.
+
+### Submission received
+
+On November 8, after the owner explicitly accepted the official terms and authorized the final submission, the prepared form was submitted once. The official `/api/commit/submitted` page confirmed receipt. The owner also confirmed GitHub himanshu748 for public credit. Legal identity, email and client ID remain out of the public evidence. [Confirmation](../outputs/submission-confirmation-evidence.json). The pending-terms notes above describe the earlier checkpoint; Buffer still determines eligibility and judging outcomes.

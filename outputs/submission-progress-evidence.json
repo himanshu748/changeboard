@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-08T12:23:39.933587+00:00",
+  "checkedAt": "2026-11-08T12:40:07.706212+00:00",
   "registration": "User completed registration; official Thank you for registering page observed",
   "submissionFormUnlocked": true,
   "soloConfirmedByOwner": true,
@@ -18,8 +18,10 @@
     "no build-in-public trail"
   ],
   "requiredTermsQuestionReached": true,
-  "termsAccepted": false,
-  "finalSubmissionPerformed": false,
-  "confirmationReceived": false,
-  "usabilityTesting": "skipped for this submission at owner request"
+  "termsAccepted": true,
+  "finalSubmissionPerformed": true,
+  "confirmationReceived": true,
+  "usabilityTesting": "skipped for this submission at owner request",
+  "publicCreditConfirmedByOwner": true,
+  "confirmationEvidence": "submission-confirmation-evidence.json"
 }

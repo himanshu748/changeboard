@@ -18,7 +18,7 @@ For workshop organizers and small venues: connect event facts to exact phrases i
 
 The existing Lightsail VM stays running; it has no free-tier idle sleep. App restarts cause a brief interruption, and shared-host load can slow requests. Existing VM charges continue; this sprint created no new billable cloud resource or paid domain. See [operations and recovery](docs/deployment.md).
 
-The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration is confirmed and the captioned 114-second live demo is publicly playable. Final submission awaits explicit acceptance of the official terms; [the prepared handoff](outputs/submission-preflight.md) records the current status.
+The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration is confirmed and the captioned 114-second live demo is publicly playable. Buffer confirmed receipt of the submission on November 8; [the confirmation](outputs/submission-confirmation-evidence.json) records that outcome, without claiming eligibility or a judging result.
 
 The [demo follow-up](outputs/recording-repair-evidence.json) performs Garden Studio → River Studio on the same validated draft. It succeeded in one attempt; fresh provider readback and Buffer’s UI retained Draft / Not scheduled, with zero queued or sent posts. This is a second application repair, not a new fixture or a broader write scope.
 

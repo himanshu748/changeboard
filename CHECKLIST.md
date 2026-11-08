@@ -10,7 +10,7 @@ Updated 8 November 2026. October implementation remains pre-window work. Checked
 | FR-02 | Bounded existing-post import | [ ] Empty and one-fixture imports verified; wider coverage incomplete | src/buffer/client.ts, src/server/app.ts, src/client | Owned Page, 20-post bound, HTTP 200/zero posts; immediate refresh regression | One text caption verified; other assets/schedules and pagination remain untested |
 | FR-03 | Exact association confirmation/manual controls | [x] Locally verified | src/domain/bindings.ts, src/client/App.tsx | Domain tests; six browser-confirmed phrases | AI extraction explicitly unavailable |
 | FR-04 | Precise preview/selected operations | [x] Locally verified | src/domain/repair.ts, src/server/service.ts | Complete captions, excluded operations, stale approvals and one verified live draft repair | Other provider payloads remain unverified |
-| FR-05 | Persist/reuse associations after change | [x] Locally verified | src/server/worker.ts, src/domain | Browser River → Garden change and reload; SQL tests | Live verified rebase pending |
+| FR-05 | Persist/reuse associations after change | [x] Locally verified | src/server/worker.ts, src/domain | Browser repeat changes/reload; SQL tests; live Garden → River reused confirmed venue association | Only the same one-draft venue association verified live |
 | FR-06 | Revision-bound images and poster/upload | [x] Local path verified | src/server/assets.ts, src/client | Poster preview/acknowledgement; upload/retention tests | Hosted fictional PNG fetched over HTTPS; Buffer media fetch unverified |
 | FR-07 | Immutable approved change set | [x] Local execution verified | src/server/service.ts, worker.ts | Tamper/stale/duplicate/owner tests | No remote atomicity/exactly-once guarantee |
 | FR-08 | Partial/skipped/uncertain recovery | [x] Locally verified | worker.ts, Results/ResultRow | 12 worker tests; persisted browser skips; latest outcome/history | Remote unknowns remain uncertain |
@@ -22,7 +22,7 @@ Updated 8 November 2026. October implementation remains pre-window work. Checked
 | LIVE-01 | One ordinary account deployed OAuth and restart persistence | [x] Verified 8 November | docs/deployment.md | outputs/deployed-oauth-evidence.json: exact callback, six fresh HTTP 200 reads, one encrypted connection and selected organization retained, fresh reads after restart | One account sufficient for this sprint; refresh/revocation and independent-account testing remain unverified |
 | LIVE-02 | One scoped Facebook text-draft repair | [x] Verified 8 November | Scope checked in preview and Buffer adapter | outputs/live-draft-repair-evidence.json: one real app repair, pre-write re-fetch/readback, draft preserved, restart retained | Only the validated fixture/channel; scheduling, other drafts, images and correction creation remain disabled |
 | RELEASE-01 | README/env/privacy/deployment docs | [x] Prepared | README.md, .env.example, docs | Local run/build instructions checked; public /privacy route | Stable HTTPS app/privacy/health verified; deployed OAuth/restart passed |
-| RELEASE-02 | Working ≤2min live demo / overview | [x] Demo produced; submission pending | public/demo.html, outputs/demo-video-evidence.json, submission-overview.md | 114-second captioned edited walkthrough of the real repair; 306-word overview | Final terms acceptance and submission remain pending |
+| RELEASE-02 | Working ≤2min live demo / overview | [x] Demo produced; submission received | public/demo.html, outputs/demo-video-evidence.json, submission-overview.md | 114-second captioned edited walkthrough of the real repair; 306-word overview | Submission receipt verified; eligibility/judging not decided |
 | VALID-01 | Observed users/manual baseline | [ ] Skipped by owner for this submission | docs/verification.md | No participants or findings claimed | Demand, willingness to pay and time savings remain unvalidated |
 
 ## Required verification mapping (PRD §12)
@@ -36,9 +36,9 @@ Updated 8 November 2026. October implementation remains pre-window work. Checked
 - Phase 3: deterministic associations and repeated-change exit **passed locally**.
 - Phase 4: comprehensible caption/time/image/conflict review **passed locally**.
 - Phase 5: durable executor, partial/uncertain recovery **passed simulated/local tests**; one scoped live caption repair **passed**; live conflict and uncertain-outcome paths remain unverified.
-- Phase 6: local accessibility/mobile/docs/asset drafts prepared; hosted sample **passed**; deployed OAuth/restart **passed**; user testing **skipped by owner**; 114-second captioned demo **produced**; final terms/submission **pending**.
+- Phase 6: local accessibility/mobile/docs/asset drafts prepared; hosted sample **passed**; deployed OAuth/restart **passed**; user testing **skipped by owner**; 114-second captioned demo **produced**; submission receipt **verified**.
 
-Registration is confirmed completed by the owner. The 114-second captioned live demo is produced; final terms acceptance/submission and broader live formats remain pending/unverified. This checklist records evidence, not contest eligibility.
+Registration is confirmed completed by the owner. The 114-second captioned live demo is produced; submission receipt is verified; broader live formats remain unverified. This checklist records evidence, not contest eligibility.
 
 ## 8 November 2026 — scoped additions
 
@@ -50,7 +50,7 @@ Registration is confirmed completed by the owner. The 114-second captioned live 
 - [x] Durable public app, PostgreSQL, HTTPS/privacy/public fictional media and hosted sample restart persistence.
 - [x] Clean clone install, typecheck, 96 tests and production build. Existing test files were unchanged. Read-receipt projections exclude raw provider payloads.
 - [x] Deployed OAuth connection/restart proof: existing client callback/privacy saved; six fresh live read receipts; encrypted connection and organization retained; fresh reads after restart.
-- [x] Produced 114-second captioned live demo; owner completed registration. Final terms acceptance/submission remain pending.
+- [x] Produced 114-second captioned live demo; owner completed registration. Submission receipt verified; no eligibility/prize decision claimed.
 
 This evidence clears only the named one-draft repair check. Other live formats, scheduling/publishing, correction creation, live conflicts and off-host recovery remain unverified; user testing skipped by owner.
 
@@ -59,6 +59,6 @@ This evidence clears only the named one-draft repair check. Other live formats, 
 - [x] Public judge guide with sample/live evidence boundaries and visible scope limits; app footer and README links.
 - [x] Same-host isolated PostgreSQL restoration: nine tables, schema/constraints/indexes, verified live operation and encrypted credentials checked; no provider calls or production restore.
 - [x] Submission package and private client-ID handoff prepared. Owner registration confirmed and official submission form unlocked.
-- [ ] Final terms acceptance and submit action; no submission confirmation yet.
+- [x] Explicit owner approval, terms acceptance and final submit completed; official receipt page observed. See outputs/submission-confirmation-evidence.json.
 - [ ] Future availability through judging and off-host disaster recovery remain ongoing/unverified.
 - [ ] User testing skipped for this submission at owner request.
