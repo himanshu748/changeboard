@@ -7,13 +7,25 @@ if (existsSync(".env")) process.loadEnvFile(".env");
 import { openDatabase, migrate } from "./db";
 import { createApp } from "./app";
 import { Worker } from "./worker";
+if (process.env.NODE_ENV === "production") {
+  if (!process.env.DATABASE_URL)
+    throw new Error(
+      "Production requires DATABASE_URL; local PGlite is for development only.",
+    );
+  if (!process.env.APP_ORIGIN?.startsWith("https://"))
+    throw new Error("Production requires an explicit HTTPS APP_ORIGIN.");
+  if (
+    Buffer.from(process.env.TOKEN_ENCRYPTION_KEY || "", "base64").length !== 32
+  )
+    throw new Error(
+      "Production requires a 32-byte base64 TOKEN_ENCRYPTION_KEY.",
+    );
+}
 const db = await openDatabase();
 await migrate(db);
 const worker = new Worker(db);
 const app = createApp(db, worker);
 if (process.env.NODE_ENV === "production") {
-  if (!process.env.APP_ORIGIN?.startsWith("https://"))
-    throw new Error("Production requires an explicit HTTPS APP_ORIGIN.");
   app.use(express.static("dist/client"));
   app.get("/{*path}", (_req, res) =>
     res.sendFile("index.html", { root: "dist/client" }),
