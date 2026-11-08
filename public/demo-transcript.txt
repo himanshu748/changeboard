@@ -42,4 +42,3 @@ The report records application state; it is not a new provider check.
 105s — NOVEMBER ADDITIONS
 Guided review, report downloads, durable hosting and scoped live-write proof.
 Try the account-free sample separately. Image/conflict outcomes there are simulated.
-

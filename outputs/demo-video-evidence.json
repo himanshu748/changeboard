@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-08T12:28:14.781573+00:00",
+  "durationSeconds": 114,
+  "width": 1920,
+  "height": 1440,
+  "framesPerSecond": 60,
+  "audio": false,
+  "captioned": true,
+  "continuousScreenRecording": false,
+  "captureMethod": "Edited walkthrough assembled from real Codex in-app-browser screenshots; editorial timing and cursor overlay are disclosed",
+  "sourceSceneCount": 10,
+  "sha256": "36c9695e6edc223c41eb370bdf3efeff7e29a32f825585493d5c40b1f3b7a8ee",
+  "bytes": 4757995,
+  "allFramesDecodedWithoutErrors": true,
+  "publicWatchUrl": "https://changeboard.52.202.25.181.sslip.io/demo.html",
+  "sourceCommit": "956439aef48ad1f31df2b3cd8db60958c3bbaa01",
+  "recordingRepairEvidence": "recording-repair-evidence.json",
+  "scope": "One further caption edit on the same validated unpublished draft and channel; no new fixture, scheduling, publishing or scope expansion",
+  "playbackVerified": true,
+  "playback": {
+    "publicMetadata": {
+      "duration": 114,
+      "readyState": 4,
+      "width": 1920,
+      "height": 1440,
+      "error": null
+    },
+    "keyboardSpaceStartsAndPauses": true,
+    "observedPlaybackTimeSeconds": 50.03,
+    "mobileViewport": 375,
+    "mobileContentWidth": 375,
+    "viewportOverrideReset": true
+  },
+  "publicAccess": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/judge.html",
+      "status": 200
+    },
+    {
+      "path": "/demo.html",
+      "status": 200
+    },
+    {
+      "path": "/demo-transcript.txt",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "path": "/demo.mp4",
+      "status": 200,
+      "contentType": "video/mp4",
+      "sha256": "36c9695e6edc223c41eb370bdf3efeff7e29a32f825585493d5c40b1f3b7a8ee",
+      "bytes": 4757995
+    },
+    {
+      "path": "/demo.mp4",
+      "rangeStatus": 206,
+      "contentRange": "bytes 0-1023/4757995"
+    }
+  ],
+  "deployment": {
+    "commit": "956439aef48ad1f31df2b3cd8db60958c3bbaa01",
+    "startedAt": "2026-11-08T12:21:07.562815+00:00",
+    "state": "healthy",
+    "finishedAt": "2026-11-08T12:23:09.257342+00:00",
+    "liveOperationsRetained": 2,
+    "verifiedLiveOperationsRetained": 2,
+    "encryptedConnectionsRetained": 1,
+    "readOnlyEvidenceMountVerified": true,
+    "credentialsAndScopeConfigurationPreserved": true,
+    "otherContainerStatesUnchanged": true
+  },
+  "postReleaseReadback": "recording-repair-post-release-evidence.json",
+  "tests": {
+    "command": "npm test -- --maxWorkers=1",
+    "node": "22.17.1",
+    "passed": 96,
+    "files": 8,
+    "seconds": 4.97
+  },
+  "productionBuild": "passed locally and in deployed Linux image"
+}

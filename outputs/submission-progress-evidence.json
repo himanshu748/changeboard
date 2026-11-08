@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-08T12:23:39.933587+00:00",
+  "registration": "User completed registration; official Thank you for registering page observed",
+  "submissionFormUnlocked": true,
+  "soloConfirmedByOwner": true,
+  "legalNameProvidedByOwner": true,
+  "formFieldsPrepared": [
+    "legal name",
+    "solo status",
+    "public credit handle",
+    "project name",
+    "public application URL",
+    "Buffer app client ID",
+    "public video URL",
+    "306-word summary",
+    "existing-project disclosure",
+    "November build-window additions",
+    "no build-in-public trail"
+  ],
+  "requiredTermsQuestionReached": true,
+  "termsAccepted": false,
+  "finalSubmissionPerformed": false,
+  "confirmationReceived": false,
+  "usabilityTesting": "skipped for this submission at owner request"
+}

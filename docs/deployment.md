@@ -1,6 +1,6 @@
 # Deployment and recovery
 
-Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Current runtime source: `33ce5c21265c9fc0ce201794eb89f93f3a968e0b`; [live repair and restart evidence](../outputs/live-draft-repair-evidence.json). The earlier [deployment snapshot](../outputs/deployment-evidence.json) is retained with its original timestamp.
+Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Current runtime source: `956439aef48ad1f31df2b3cd8db60958c3bbaa01`; [live repair and restart evidence](../outputs/live-draft-repair-evidence.json). The earlier [deployment snapshot](../outputs/deployment-evidence.json) is retained with its original timestamp.
 
 ## Actual deployment
 
@@ -79,3 +79,9 @@ This proves same-host logical backup restoration. The backup and live database s
 ## Public judge guide release
 
 Runtime `33ce5c21265c9fc0ce201794eb89f93f3a968e0b` became healthy at 11:46:53 UTC on November 8. The image adds the static `/judge.html` guide and an app-footer entry point. Only the app was recreated. The database, encrypted connection, verified live-operation counts, evidence scope and read-only receipt mount were preserved; other container states were unchanged. No additional provider write was performed. [Judge-readiness evidence](../outputs/judge-readiness-evidence.json).
+
+## Live-demo release
+
+Runtime `956439aef48ad1f31df2b3cd8db60958c3bbaa01` became healthy at 12:23:09 UTC on November 8. It serves `/demo.html`, `/demo.mp4`, a poster and transcript from the existing app image. The MP4 is about 4.8 MB; HTTPS full download and byte-range requests passed, and public bytes match the local SHA-256. There is no third-party video host, new cloud resource or additional paid tier. The watch page is account-free; its HTML player supports native controls and fullscreen.
+
+Only the app was recreated. Both verified real caption operations, one encrypted connection, the original credentials and scope, and the read-only evidence mount were retained; other container states were unchanged. The connected browser reloaded the second result, and fresh post-release Buffer readback still showed River Studio as an unscheduled draft with unchanged unrelated fields. No new provider write occurred during deployment. [Video/deployment evidence](../outputs/demo-video-evidence.json) · [Post-release readback](../outputs/recording-repair-post-release-evidence.json).
