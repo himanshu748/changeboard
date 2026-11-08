@@ -1,6 +1,6 @@
 # Deployment and recovery
 
-Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Current runtime source: `952cae5f41a5a425310ab3ff6d320e1c5ecb1b61`; [live repair and restart evidence](../outputs/live-draft-repair-evidence.json). The earlier [deployment snapshot](../outputs/deployment-evidence.json) is retained with its original timestamp.
+Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Current runtime source: `33ce5c21265c9fc0ce201794eb89f93f3a968e0b`; [live repair and restart evidence](../outputs/live-draft-repair-evidence.json). The earlier [deployment snapshot](../outputs/deployment-evidence.json) is retained with its original timestamp.
 
 ## Actual deployment
 
@@ -45,15 +45,15 @@ umask 077
 docker exec changeboard-db pg_dump -U changeboard -d changeboard -Fc > <private-backup-path>
 ```
 
-The dump contains sensitive campaign and encrypted connection data. Protect a matching encryption key separately. Backup restoration has **not** been rehearsed. For rollback, restore a compatible image/database pair; do not remove the database volume or run `docker compose down -v`. Rotating the encryption key requires controlled re-encryption or reconnection. Keep public media reachable while any potentially successful Buffer mutation depends on it.
+The dump contains sensitive campaign and encrypted connection data. Protect a matching encryption key separately. An isolated same-host PostgreSQL restoration passed on November 8; see [the receipt](../outputs/backup-restore-evidence.json). Off-host disaster recovery has not been tested. For rollback, restore a compatible image/database pair; do not remove the database volume or run `docker compose down -v`. Rotating the encryption key requires controlled re-encryption or reconnection. Keep public media reachable while any potentially successful Buffer mutation depends on it.
 
 A worker crash leaves a running operation until its 120-second lease expires; it then becomes uncertain and needs observation, never automatic replay. Stopping Changeboard does not stop Buffer publication. Remote edits have no guaranteed rollback or multi-post transaction.
 
-Limits remain six selected posts; 20-post pages / at most 100 candidates; 5 MB uploaded images and 25 million decoded pixels; controlled English date expressions. Abuse quotas, external monitoring, multi-process deployment and operational backup/restore need further validation. No full security audit or uptime guarantee is claimed.
+Limits remain six selected posts; 20-post pages / at most 100 candidates; 5 MB uploaded images and 25 million decoded pixels; controlled English date expressions. Abuse quotas, external monitoring, multi-process deployment and off-host disaster recovery need further validation. No full security audit or uptime guarantee is claimed.
 
 ## Restricted draft-validation release
 
-Runtime `952cae5` was deployed at 08:28 UTC on November 8. Only the application container was recreated; other container states were unchanged. A private pre-release PostgreSQL dump was taken, but restoration remains untested. The encryption key and database credentials were preserved.
+Runtime `952cae5` was deployed at 08:28 UTC on November 8. Only the application container was recreated; other container states were unchanged. A private pre-release PostgreSQL dump was taken. A later consistent-snapshot backup was restored and checked in isolation; the current receipt distinguishes that same-host check from failover. The encryption key and database credentials were preserved.
 
 The current release uses the optional `deploy/live-validation.compose.yaml` overlay. `CHANGEBOARD_LIVE_EVIDENCE_PATH` points to `/opt/changeboard/live-validation/enabled-evidence.json`, outside the checkout. That genuine smoke-test receipt restricts writes to caption edits on one unpublished fixture and its existing channel. The containing host directory is private; the credential-free scope file is readable inside its read-only bind mount by the nonroot app. Never replace it with a simulated receipt or expand its IDs without authorization and actual validation.
 
@@ -67,3 +67,15 @@ docker compose --env-file /opt/changeboard/.env.production -f deploy/compose.yam
 Omitting the overlay disables these live writes. The overlay refuses to create a missing host path. Do not use resolved `compose config` output in logs: it contains credentials. Health alone does not prove an authorized write; check the in-app scope notice and verified receipt.
 
 The real River Studio → Garden Studio repair succeeded with one application attempt. At 08:35 UTC, another application restart preserved the live operation and encrypted connection; fresh provider readback and browser reload passed. Nothing was scheduled, published or deleted. Scheduling, images, other drafts and correction creation remain outside this test's scope.
+
+## Verified isolated restoration
+
+On November 8, a read-only repeatable-read snapshot supplied a consistent `pg_dump --format=custom --snapshot=...` backup. The snapshot transaction was closed after the dump. A temporary PostgreSQL 17 container restored it with `pg_restore --no-owner --no-privileges --single-transaction --exit-on-error`. Its network mode was `none`, no port was published, and its memory/CPU were bounded. No application or worker was started against that copy.
+
+All nine table row counts and canonical content digests matched the source snapshot. Columns, constraints and indexes also matched. The verified live repair record was present, and the restored encrypted connection decrypted using the preserved original key without contacting Buffer. The temporary container/data and its disposable password file were removed; production services were left running and their container states were unchanged. The private backup remains outside the checkout on the VM. [Credential-free evidence](../outputs/backup-restore-evidence.json).
+
+This proves same-host logical backup restoration. The backup and live database still share the VM failure domain; no off-host restore or regional failover is claimed. Preserve the matching encryption key separately and keep backups private.
+
+## Public judge guide release
+
+Runtime `33ce5c21265c9fc0ce201794eb89f93f3a968e0b` became healthy at 11:46:53 UTC on November 8. The image adds the static `/judge.html` guide and an app-footer entry point. Only the app was recreated. The database, encrypted connection, verified live-operation counts, evidence scope and read-only receipt mount were preserved; other container states were unchanged. No additional provider write was performed. [Judge-readiness evidence](../outputs/judge-readiness-evidence.json).

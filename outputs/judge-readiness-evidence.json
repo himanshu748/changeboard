@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-11-08T11:53:15.342822+00:00",
+  "runtimeCommit": "33ce5c21265c9fc0ce201794eb89f93f3a968e0b",
+  "publicJudgeGuide": "https://changeboard.52.202.25.181.sslip.io/judge.html",
+  "deployment": {
+    "commit": "33ce5c21265c9fc0ce201794eb89f93f3a968e0b",
+    "startedAt": "2026-11-08T11:45:00.696970+00:00",
+    "state": "healthy",
+    "finishedAt": "2026-11-08T11:46:53.957020+00:00",
+    "otherContainerStatesUnchanged": true,
+    "credentialsAndScopeConfigurationPreserved": true,
+    "readOnlyEvidenceMountVerified": true,
+    "liveOperationAndConnectionCountsPreserved": true,
+    "workerSemanticsChanged": false
+  },
+  "httpsChecks": [
+    {
+      "path": "/",
+      "status": 200,
+      "certificateVerification": true
+    },
+    {
+      "path": "/judge.html",
+      "status": 200,
+      "certificateVerification": true
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "certificateVerification": true
+    },
+    {
+      "path": "/health",
+      "status": 200,
+      "certificateVerification": true
+    }
+  ],
+  "publicSourceAndGuideProofLinks": {
+    "checkedLoggedOut": true,
+    "checkedLinks": 6,
+    "allStatus200": true
+  },
+  "guideBrowser": {
+    "browser": "isolated Chromium",
+    "viewportWidths": [1440, 375],
+    "horizontalOverflow": false,
+    "reducedMotion": true,
+    "skipLinkOutline": "3px",
+    "skipLinkEnterFocusesMain": true,
+    "sampleEntryWorks": true,
+    "appFooterGuideWorks": true,
+    "screenshots": [
+      "../docs/images/judge-guide-desktop.png",
+      "../docs/images/judge-guide-mobile.png"
+    ]
+  },
+  "hostedSample": {
+    "mode": "fictional sample",
+    "loginRequired": false,
+    "confirmedPhrases": 6,
+    "venueOnly": "Mill Studio to River Studio",
+    "dateAndTimeUnchanged": true,
+    "generatedPosterVisuallyReviewed": true,
+    "externalEdit": "simulated",
+    "applyActivatedByEnter": true,
+    "verifiedInSample": 1,
+    "skipped": 2,
+    "skippedSchedulesUnchanged": true,
+    "reportDownloaded": true,
+    "resultSurvivedReload": true,
+    "horizontalOverflowAt375": false,
+    "applicationAlerts": 0,
+    "settingsClosesWithEscape": true
+  },
+  "validation": {
+    "typecheck": "passed",
+    "defaultTestCommand": "npm test -- --maxWorkers=1",
+    "testsPassed": 96,
+    "testFiles": 8,
+    "productionBuild": "passed locally and in deployed Linux image",
+    "testAssertionsOrTimeoutsChanged": false
+  },
+  "backupRestoration": "backup-restore-evidence.json",
+  "submissionPreflight": "submission-preflight-evidence.json",
+  "additionalLiveProviderWrites": 0,
+  "usabilityTesting": "skipped for this submission at owner request",
+  "registration": "required; not performed",
+  "video": "not recorded",
+  "submission": "not performed",
+  "limits": [
+    "One exact draft/channel caption-write scope retained",
+    "Second-account robustness and other live formats remain unverified",
+    "Restoration is same-host only; no off-host failover claim",
+    "Health checks are point-in-time; future availability is not guaranteed"
+  ]
+}

@@ -2,7 +2,7 @@
 
 Change one event fact. Repair the campaign you already wrote.
 
-**[Open Changeboard](https://changeboard.52.202.25.181.sslip.io)** · [Privacy](https://changeboard.52.202.25.181.sslip.io/privacy) · [Judge walkthrough](docs/judge-walkthrough.md)
+**[Open Changeboard](https://changeboard.52.202.25.181.sslip.io)** · [Privacy](https://changeboard.52.202.25.181.sslip.io/privacy) · [Judge guide](https://changeboard.52.202.25.181.sslip.io/judge.html) · [Detailed walkthrough](docs/judge-walkthrough.md)
 
 For workshop organizers and small venues: connect event facts to exact phrases in existing Buffer posts, review captions, images and publication times, then track individual outcomes. Confirmed phrases can be reused for the next change.
 
@@ -18,7 +18,7 @@ For workshop organizers and small venues: connect event facts to exact phrases i
 
 The existing Lightsail VM stays running; it has no free-tier idle sleep. App restarts cause a brief interruption, and shared-host load can slow requests. Existing VM charges continue; this sprint created no new billable cloud resource or paid domain. See [operations and recovery](docs/deployment.md).
 
-The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration, submission and video recording remain the entrant's tasks.
+The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration, submission and video recording remain the entrant's tasks; [the prepared handoff](outputs/submission-preflight.md) records the exact remaining steps.
 
 ![Real Buffer draft: the deployed app previews only River Studio changing to Garden Studio; the draft remains not scheduled.](docs/images/live-draft-caption-preview.jpg)
 

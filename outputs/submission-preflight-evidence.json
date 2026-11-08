@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-08T11:40:18.032621+00:00",
+  "officialSubmissionUrl": "https://buffer.com/api/commit/submit",
+  "officialRegistrationUrl": "https://buffer.com/api/commit/register",
+  "signedInAccountRegistration": "not registered: official submit page displayed Register first",
+  "registrationPerformed": false,
+  "submissionPerformed": false,
+  "submissionFormFieldsInspected": false,
+  "formFieldsBlocker": "Official submit page requires completed registration before exposing the submission form",
+  "videoRecorded": false,
+  "videoUrlAvailable": false,
+  "usabilityTesting": "skipped for this submission at owner request",
+  "entrantIdentityDetails": "not inferred; owner supplies legal name, verified Buffer email and solo/team details"
+}
