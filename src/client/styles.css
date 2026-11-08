@@ -30,6 +30,26 @@
   border-radius: 6px;
   background: #fff;
 }
+.read-evidence {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.read-evidence ul {
+  padding: 0;
+  list-style: none;
+}
+.read-evidence li {
+  display: grid;
+  gap: 3px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.read-evidence time {
+  color: var(--muted);
+  font-size: 12px;
+}
 .sample-guide h2 {
   margin: 7px 0;
   font-size: 18px;

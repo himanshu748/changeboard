@@ -24,6 +24,7 @@ import type { Database, Sql } from "./db";
 import { jsonRow } from "./db";
 import { poster } from "./assets";
 import { sampleCampaign } from "./sample";
+import { readEvidence } from "./read-evidence";
 import {
   getConnection,
   configured,
@@ -107,6 +108,7 @@ export async function stateFor(
       })),
       organizationId: c.organizationId,
       message: c.message,
+      readReceipts: readEvidence(c.apiReceipts),
     },
     liveVerifiedServices: [
       ...new Set(evidence.map((e) => e.key.split(":")[0])),

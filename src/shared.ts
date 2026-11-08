@@ -125,6 +125,14 @@ export interface AppState {
     channels: Channel[];
     organizationId?: string;
     message?: string;
+    readReceipts?: {
+      at: string;
+      operation: string;
+      httpStatus?: number;
+      outcome: "response" | "transport_error";
+      apiErrors: boolean;
+      postsReturned?: number;
+    }[];
   };
   liveVerifiedServices: string[];
 }

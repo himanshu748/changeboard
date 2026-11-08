@@ -3014,6 +3014,50 @@ function Settings({
           posts remain unchanged and scheduled. Revoke app access in Buffer
           settings as well if needed.
         </p>
+        <div className="read-evidence">
+          <h3>Recent Buffer read receipts</h3>
+          <p className="helper">
+            Account requests are separate from sample repairs. An HTTP response
+            does not prove a successful repair.
+          </p>
+          {state.connection.readReceipts?.length ? (
+            <ul>
+              {state.connection.readReceipts.map((receipt, index) => (
+                <li key={`${receipt.at}-${index}`}>
+                  <strong>
+                    {
+                      (
+                        {
+                          account: "Account discovery",
+                          channels: "Channel discovery",
+                          posts: "Post import",
+                          post: "Post read",
+                          read: "Read request",
+                        } as Record<string, string>
+                      )[receipt.operation]
+                    }
+                  </strong>
+                  <span>
+                    {receipt.outcome === "transport_error"
+                      ? "No response"
+                      : `HTTP ${receipt.httpStatus ?? "unknown"}`}
+                    {receipt.apiErrors ? " · API errors returned" : ""}
+                    {receipt.postsReturned !== undefined
+                      ? ` · ${receipt.postsReturned} posts returned`
+                      : ""}
+                  </span>
+                  <time dateTime={receipt.at}>
+                    {new Date(receipt.at).toLocaleString("en-GB")}
+                  </time>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="helper">
+              No live read receipts are recorded in this workspace yet.
+            </p>
+          )}
+        </div>
       </section>
       <section>
         <span className="eyebrow">PRIVACY & DATA</span>
