@@ -54,5 +54,7 @@
     "postgresMemoryMiB": 128,
     "appCpu": 0.5,
     "postgresCpu": 0.25
-  }
+  },
+  "laterEvidence": "live-draft-repair-evidence.json",
+  "snapshotNote": "This earlier timestamped snapshot is retained. The later authorized draft test and runtime revision are recorded separately."
 }

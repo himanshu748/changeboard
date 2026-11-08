@@ -102,5 +102,7 @@
   },
   "postWriteCalls": 0,
   "liveWriteFormatsEnabled": false,
-  "liveWriteStatus": "blocked - write authorization not granted"
+  "liveWriteStatus": "blocked - write authorization not granted",
+  "laterEvidence": "live-draft-repair-evidence.json",
+  "snapshotNote": "This earlier timestamped snapshot is retained. The later authorized draft test and runtime revision are recorded separately."
 }

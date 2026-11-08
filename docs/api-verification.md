@@ -1,5 +1,7 @@
 # Buffer API verification
 
+Latest live evidence: the [November 8 scoped draft repair](../outputs/live-draft-repair-evidence.json) passed. The October record below is retained as its historical baseline; see the final section for the observed Facebook draft contract.
+
 Checked 25 October 2026. **Documentation verified; live API behavior not yet verified.** Exact GraphQL documents are in `src/buffer/queries.ts`; runtime responses are validated with Zod in `src/buffer/types.ts`. No personal API token substitutes for the public-user OAuth flow.
 
 ## Authentication contract
@@ -63,3 +65,11 @@ One live-validation nuance remains: Buffer may recompute URL/hashtag annotation 
 On 25 October, the email-verification gate cleared and the user approved a temporary HTTPS endpoint and private/server client creation. The Changeboard client was created with `account:read`, `posts:read`, and `posts:write`. The user then approved the actual account-access grant, including `offline_access`. The authorization-code/PKCE flow and confidential-client token exchange succeeded. After the owner signed in and explicitly approved a restricted Meta grant, the Himanshu jha Facebook Page was connected. Six live GraphQL reads returned HTTP 200: account three times, channels twice, and posts once. The bounded request (20 maximum; draft/scheduled/sent; selected Page only) returned zero posts and no next cursor, matching Buffer Queue/Drafts/Sent counts of zero. The Meta grant includes public profile, selected-Page listing and Page-content reads only; optional email, insights, publishing, ads, business management, Instagram, comment/user-content and webhook/account-management access were disabled. Encrypted access/refresh tokens and selected-organization state survived a server restart. No live write or queued operation occurred; every live format gate remains off. Redacted receipts are in `outputs/live-setup-evidence.json`.
 
 The public privacy page and callback use the explicitly approved temporary Cloudflare Quick Tunnel listed in `outputs/LIVE-SETUP.md`. It is not stable production hosting. No Gmail access was needed. No paid resource, public progress post or contest submission occurred. Second-account, live refresh/revocation, post-import, mutation and media-acceptance evidence remains open.
+
+## 8 November 2026 — actual Facebook draft behavior
+
+The authorized one-draft test is recorded separately in [provider smoke evidence](../outputs/live-draft-smoke-evidence.json) and [application repair evidence](../outputs/live-draft-repair-evidence.json). The existing OAuth `posts:write` grant and channel `manageUpdates`/post `updatePost` actions sufficed for unpublished draft creation and editing. No Meta permission was expanded. This does not establish Facebook publishing permission.
+
+The live API rejected both creation and edit when Facebook post type was omitted: `InvalidInputError`, “Facebook posts require a type (post, story, or reel).” Corrected draft payloads include `metadata.facebook.type: post` and `saveToDraft: true`; no `dueAt` is sent. The production adapter adds these fields to Facebook draft edits. Existing scheduled-edit and narrow-payload tests remain unchanged; scheduled live edits were not exercised. Only the tested draft's empty assets/tags and ordinary metadata were checked for preservation; richer metadata is not proven by this fixture.
+
+The installed `facebook:page:text` evidence is restricted to caption edits on the exact existing channel and fixture. It does not enable correction-draft creation, other posts, scheduling or images. The real application operation completed pre-write reads, one edit and a successful readback. Its durable result survived restart. Nonempty pagination, images, live conflict/unknown-write recovery, correction creation and independent-account behavior remain unverified.

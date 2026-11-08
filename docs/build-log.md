@@ -38,3 +38,16 @@ The user signed in to Meta and approved only the Himanshu jha Page with public-p
 - LIVE-02: **blocked — write authorization not granted**. No live fixture, mutation, grant expansion or simulated format evidence was introduced. No contest registration, submission or public social post was performed.
 
 The prior October entries and their pre-window provenance remain unchanged. These entries describe new November work and observed checks; they do not assert contest eligibility or a submission outcome.
+
+
+## 8 November 2026 — authorized draft repair and restricted write evidence
+
+- New owner authorization explicitly permitted one fictional draft, controlled caption validation and one application repair on the existing Page. Scheduling, publishing, deletion and permission expansion stayed excluded. The earlier read-only checkpoint above remains historical.
+- The first create and edit attempts returned HTTP 200 with `InvalidInputError` for missing Facebook post type. Neither rejection is counted as a successful mutation. Corrected requests explicitly retained draft status and supplied `metadata.facebook.type: post`. One draft was created, then a controlled Mill Studio → River Studio edit was read back with unrelated fields intact. [Provider smoke receipt](../outputs/live-draft-smoke-evidence.json).
+- `952cae5f41a5a425310ab3ff6d320e1c5ecb1b61`: new operation/ID scope on live-format evidence, strict validation, preview and adapter enforcement, visible scope notice, optional read-only evidence mount, explicit Facebook draft type/status handling, and ten new simulated gate tests. Existing test files, migrations, worker leases, conflict checks and cutoff were unchanged.
+- That revision was deployed at 08:28 UTC on existing Lightsail capacity. A private PostgreSQL dump was taken; credentials/key were preserved and other container states were unchanged. No new billable resource or permission grant was created.
+- At 08:33 UTC, the deployed app imported the real draft, confirmed its River Studio phrase and approved one Garden Studio repair. Pre-write reads, one actual edit and readback completed; the durable operation succeeded with one attempt. Buffer UI independently showed the new caption as one unscheduled draft, Queue 0 / Sent 0. [Application evidence](../outputs/live-draft-repair-evidence.json).
+- At 08:35 UTC, restarting only Changeboard preserved the operation and encrypted connection. A fresh provider read and browser reload retained Garden Studio and the verified result. No scheduling, publication or deletion occurred. The private installed receipt enables only caption edits on that exact draft/channel; images, scheduled posts, other drafts and correction creation remain disabled.
+- Normal Node 22 validation and an external clean clone passed install, typecheck, 96 tests and build. Cold SQL timeout failures were followed by an unchanged default-suite pass; a nested task verification clone was moved outside the repo to prevent duplicate discovery. The actual clean rerun took 34.48 seconds. Credential checks and screenshot review are recorded in the final handoff.
+
+This is new November functionality and actual provider evidence, not a relabeling of October work. No contest registration, submission, social build post, recording or generated narration was performed.

@@ -12,15 +12,17 @@ For workshop organizers and small venues: connect event facts to exact phrases i
 
 **Buffer evidence — 8 November 2026:** ordinary OAuth connected the existing account at this public URL, discovered its owned Facebook Page and completed an empty bounded post import. Six fresh live read receipts returned HTTP 200 without GraphQL errors. The encrypted connection and selected organization survived an application restart; fresh account/channel reads then succeeded. [Deployed OAuth evidence](outputs/deployed-oauth-evidence.json) records the checks. The six [October receipts](outputs/read-only-test-evidence.json) remain separate historical evidence.
 
-**Live writes are blocked — write authorization not granted.** The existing Meta grant is read-only. No live format is enabled, no Meta permission was expanded, and no live post was created, repaired or scheduled in this sprint.
+**Real draft repair — 8 November 2026:** after explicit draft-only authorization, one fictional text draft was imported through the deployed app. Its exact venue phrase changed from **River Studio to Garden Studio**. The worker re-fetched before editing, verified Buffer’s readback and recorded one successful operation with one attempt. Buffer’s UI independently showed the new caption as **Unscheduled / Draft**, with zero queued and zero sent posts. The result and encrypted connection survived another application restart. [Live repair evidence](outputs/live-draft-repair-evidence.json) · [Repair report](outputs/live-draft-repair-report.md).
+
+**Writes remain restricted to this one validated draft on the existing Page.** The installed receipt permits only text-caption edits on its exact channel/post IDs. Scheduled posts, other drafts, images and correction-draft creation remain blocked by that scope. The Meta grant was not expanded; draft editing worked under the existing connection. No post was scheduled, published or deleted.
 
 The existing Lightsail VM stays running; it has no free-tier idle sleep. App restarts cause a brief interruption, and shared-host load can slow requests. Existing VM charges continue; this sprint created no new billable cloud resource or paid domain. See [operations and recovery](docs/deployment.md).
 
 The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration, submission and video recording remain the entrant's tasks.
 
-![Hosted fictional sample: an exact venue repair from Mill Studio to River Studio while the original date, time and unrelated writing remain unchanged.](docs/images/hosted-venue-review.png)
+![Real Buffer draft: the deployed app previews only River Studio changing to Garden Studio; the draft remains not scheduled.](docs/images/live-draft-caption-preview.jpg)
 
-_Hosted sample screenshot; no Buffer posts changed._
+_Real Buffer draft containing fictional test content. This repair was applied and read back; it was never scheduled or published._
 
 ## Run locally
 
@@ -73,7 +75,7 @@ The app records bounded, credential-free API receipts privately inside each conn
 ]
 ```
 
-Do not populate this file from simulated results. See `docs/api-verification.md` and `docs/live-validation.md`. Live Instagram correction drafts are withheld until a separately reviewed correction image is implemented and tested; the text-only correction path supports verified Facebook Page channels.
+Do not populate this file from simulated results. The current partial test also requires the draft/channel/post `scope` documented in `docs/live-validation.md`; its receipt does not justify an unrestricted format record. See `docs/api-verification.md` for the observed contract. Live Instagram correction drafts are withheld until a separately reviewed correction image is implemented and tested; the text-only correction path supports verified Facebook Page channels.
 
 ## Architecture and invariants
 
@@ -93,4 +95,4 @@ Assets are PNGs at stable opaque `/media/:id` URLs served from the durable datab
 
 See `docs/deployment.md`, `docs/privacy.md`, `CHECKLIST.md`, and `docs/verification.md`. The project-specific UI decisions are in `design.md`; the unchanged supplied specification is `PRD.md`.
 
-The October 25 implementation predates the Buffer Commit build window. November 8 adds downloadable repair reports, a guided sample journey, connection-availability guidance, production configuration checks, isolated Docker/PostgreSQL hosting and credential-free read-receipt summaries. [Build provenance](docs/build-log.md) separates these additions; no earlier work is relabeled. The demo script and overview under `outputs/` describe the observed release and its read-only limit. No submission or live working video is claimed.
+The October 25 implementation predates the Buffer Commit build window. November 8 adds downloadable repair reports, a guided sample journey, connection-availability guidance, production configuration checks, isolated Docker/PostgreSQL hosting, credential-free read-receipt summaries and narrowly scoped draft-write evidence. Live testing also exposed the required explicit Facebook draft type, now included while retaining draft status. [Build provenance](docs/build-log.md) separates these additions; no earlier work is relabeled. The demo script and overview under `outputs/` describe the observed release and its read-only limit. No submission or live working video is claimed.

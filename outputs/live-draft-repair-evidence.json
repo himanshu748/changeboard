@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-08",
+  "url": "https://changeboard.52.202.25.181.sslip.io",
+  "runtimeCommit": "952cae5f41a5a425310ab3ff6d320e1c5ecb1b61",
+  "throughDeployedApp": true,
+  "provider": "Buffer GraphQL through ordinary OAuth",
+  "authorization": "Caption-only test on the existing owned Facebook Page and one unpublished fictional draft; no publishing, scheduling, deletion or new permissions",
+  "verified": true,
+  "at": "2026-11-08T08:35:30.280Z",
+  "operation": {
+    "action": "edit",
+    "status": "succeeded",
+    "attempts": 1,
+    "message": "Updated and verified.",
+    "createdAt": "2026-11-08T08:33:37.129Z",
+    "updatedAt": "2026-11-08T08:33:38.142Z",
+    "before": "Changeboard test only \u2014 Fictional workshop at River Studio. Do not publish.",
+    "after": "Changeboard test only \u2014 Fictional workshop at Garden Studio. Do not publish."
+  },
+  "providerReadback": {
+    "text": "Changeboard test only \u2014 Fictional workshop at Garden Studio. Do not publish.",
+    "status": "draft",
+    "dueAt": null,
+    "sentAt": null,
+    "assets": 0,
+    "tags": 0,
+    "unrelatedFieldsPreserved": true
+  },
+  "campaign": {
+    "stage": "results",
+    "mode": "live",
+    "confirmedPhrases": 1
+  },
+  "receipts": [
+    {
+      "at": "2026-11-08T08:10:50.446Z",
+      "operation": "posts",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:13:38.533Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:13:38.658Z",
+      "operation": "channels",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:13:38.733Z",
+      "operation": "posts",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:17:16.128Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:32:56.065Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:33:37.693Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:33:37.799Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:33:37.891Z",
+      "operation": "editPost",
+      "kind": "write",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:33:38.041Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:34:16.326Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T08:35:29.795Z",
+      "operation": "post",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    }
+  ],
+  "sourceConflictCheck": "Existing worker pre-write re-fetch and fingerprint checks retained; no external conflict was induced in this single-draft run",
+  "scope": {
+    "format": "facebook:page:text",
+    "captionEditsOnly": true,
+    "draftOnly": true,
+    "onePageOnly": true,
+    "oneFixtureOnly": true,
+    "otherFormatsEnabled": false,
+    "correctionDraftsEnabled": false
+  },
+  "mutationRequests": {
+    "rejectedInvalidInput": 2,
+    "createdDraft": 1,
+    "verifiedSmokeEdit": 1,
+    "verifiedApplicationRepair": 1,
+    "publishedOrScheduled": 0
+  },
+  "restartPersistence": {
+    "at": "2026-11-08T08:35:26.858485+00:00",
+    "appRestarted": true,
+    "operationRecordsUnchanged": true,
+    "encryptedConnectionRetained": true,
+    "otherContainerStatesUnchanged": true,
+    "before": {
+      "encryptedConnections": 1,
+      "liveOperations": 1,
+      "liveSucceeded": 1,
+      "liveUncertain": 0,
+      "campaigns": 2
+    },
+    "after": {
+      "encryptedConnections": 1,
+      "liveOperations": 1,
+      "liveSucceeded": 1,
+      "liveUncertain": 0,
+      "campaigns": 2
+    },
+    "browserReloadRetainedVerifiedResult": true,
+    "freshProviderReadAfterRestart": true
+  },
+  "cleanCloneChecks": {
+    "node": "v22.17.1",
+    "install": "passed",
+    "typecheck": "passed",
+    "testsPassed": 96,
+    "testCommand": "npm test -- --maxWorkers=1",
+    "productionBuild": "passed",
+    "note": "An initial cold clean-clone run hit one 5-second SQL test timeout; the unchanged default suite passed on rerun."
+  },
+  "bufferUiReadback": {
+    "drafts": 1,
+    "queue": 0,
+    "sent": 0,
+    "status": "Unscheduled / No time / Draft",
+    "caption": "Changeboard test only \u2014 Fictional workshop at Garden Studio. Do not publish."
+  },
+  "report": "live-draft-repair-report.md",
+  "screenshots": [
+    "../docs/images/live-draft-caption-preview.jpg",
+    "../docs/images/live-draft-result.jpg",
+    "../docs/images/buffer-draft-readback.jpg"
+  ]
+}

@@ -1,6 +1,6 @@
 # Deployment and recovery
 
-Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Runtime source: `5151595d1eefe7882f6b186d6812fa00969eabf0`; [dated evidence](../outputs/deployment-evidence.json).
+Verified 8 November 2026. **[Public app](https://changeboard.52.202.25.181.sslip.io)** · **[Privacy](https://changeboard.52.202.25.181.sslip.io/privacy)**. Current runtime source: `952cae5f41a5a425310ab3ff6d320e1c5ecb1b61`; [live repair and restart evidence](../outputs/live-draft-repair-evidence.json). The earlier [deployment snapshot](../outputs/deployment-evidence.json) is retained with its original timestamp.
 
 ## Actual deployment
 
@@ -22,7 +22,7 @@ Keep the same encryption key and database password across releases. The exact ex
 - Callback: `https://changeboard.52.202.25.181.sslip.io/api/auth/callback`
 - Privacy: `https://changeboard.52.202.25.181.sslip.io/privacy`
 
-**The existing client callback and privacy URL were saved in Buffer on November 8.** Ordinary deployed OAuth, Page discovery and empty import passed; the encrypted connection and selected organization survived an app restart at 07:26 UTC, followed by fresh account/channel reads. See [the credential-free receipt](../outputs/deployed-oauth-evidence.json). Setting an environment variable alone would not establish this provider-side update. Do not create another app or expand OAuth/Meta permissions. Live write formats remain disabled; `LIVE_FORMAT_EVIDENCE_FILE` is unset.
+**The existing client callback and privacy URL were saved in Buffer on November 8.** Ordinary deployed OAuth, Page discovery and empty import passed; the encrypted connection and selected organization survived an app restart at 07:26 UTC, followed by fresh account/channel reads. See [the credential-free receipt](../outputs/deployed-oauth-evidence.json). Setting an environment variable alone would not establish this provider-side update. Do not create another app or expand OAuth/Meta permissions. The later authorized one-draft test mounts the restricted evidence below; other live writes remain disabled.
 
 For a reviewed release, validate a clean checkout, take a private database backup before migrations, build an image tagged with its exact commit, then update only `CHANGEBOARD_IMAGE` in the private environment file. Example operator commands on the VM, from the reviewed source checkout:
 
@@ -50,3 +50,20 @@ The dump contains sensitive campaign and encrypted connection data. Protect a ma
 A worker crash leaves a running operation until its 120-second lease expires; it then becomes uncertain and needs observation, never automatic replay. Stopping Changeboard does not stop Buffer publication. Remote edits have no guaranteed rollback or multi-post transaction.
 
 Limits remain six selected posts; 20-post pages / at most 100 candidates; 5 MB uploaded images and 25 million decoded pixels; controlled English date expressions. Abuse quotas, external monitoring, multi-process deployment and operational backup/restore need further validation. No full security audit or uptime guarantee is claimed.
+
+## Restricted draft-validation release
+
+Runtime `952cae5` was deployed at 08:28 UTC on November 8. Only the application container was recreated; other container states were unchanged. A private pre-release PostgreSQL dump was taken, but restoration remains untested. The encryption key and database credentials were preserved.
+
+The current release uses the optional `deploy/live-validation.compose.yaml` overlay. `CHANGEBOARD_LIVE_EVIDENCE_PATH` points to `/opt/changeboard/live-validation/enabled-evidence.json`, outside the checkout. That genuine smoke-test receipt restricts writes to caption edits on one unpublished fixture and its existing channel. The containing host directory is private; the credential-free scope file is readable inside its read-only bind mount by the nonroot app. Never replace it with a simulated receipt or expand its IDs without authorization and actual validation.
+
+When retaining this scope in a reviewed upgrade, include both Compose files:
+
+```sh
+docker compose --env-file /opt/changeboard/.env.production -f deploy/compose.yaml -f deploy/live-validation.compose.yaml config --quiet
+docker compose --env-file /opt/changeboard/.env.production -f deploy/compose.yaml -f deploy/live-validation.compose.yaml up -d --no-deps app
+```
+
+Omitting the overlay disables these live writes. The overlay refuses to create a missing host path. Do not use resolved `compose config` output in logs: it contains credentials. Health alone does not prove an authorized write; check the in-app scope notice and verified receipt.
+
+The real River Studio → Garden Studio repair succeeded with one application attempt. At 08:35 UTC, another application restart preserved the live operation and encrypted connection; fresh provider readback and browser reload passed. Nothing was scheduled, published or deleted. Scheduling, images, other drafts and correction creation remain outside this test's scope.
