@@ -1,16 +1,26 @@
 # Changeboard
 
-Change an event date, time or venue across the Buffer posts you already wrote. Review exact caption edits, publication times and images, then keep a record of what worked and what still needs attention.
+Change one event fact. Repair the campaign you already wrote.
 
-Built for workshop organizers and small venues whose plans change after announcements and reminders have been scheduled. Confirm the phrases that refer to your event once; reuse them for the next change while keeping unrelated writing intact.
+**[Open Changeboard](https://changeboard.52.202.25.181.sslip.io)** · [Privacy](https://changeboard.52.202.25.181.sslip.io/privacy) · [Judge walkthrough](docs/judge-walkthrough.md)
 
-**Try it:** run the local sample below. No Buffer account or paid service is required. The sample is fictional and never calls Buffer.
+For workshop organizers and small venues: connect event facts to exact phrases in existing Buffer posts, review captions, images and publication times, then track individual outcomes. Confirmed phrases can be reused for the next change.
 
-**Current status:** the local sample journey works. Historical live validation on October 25 covered OAuth, channel discovery and an empty post import. Nonempty live imports, repairs and public media acceptance remain unverified; live write formats are disabled. There is no verified durable hosted app or contest video. Making this repository public does not satisfy those release requirements. See [the judge walkthrough and readiness review](docs/judge-walkthrough.md).
+## What is verified live today
 
-![Fictional sample: a second venue change from River Studio to Garden Studio, with full caption comparison and a fresh image-review requirement.](docs/images/sample-repeat-review.png)
+**Deployment checks — 8 November 2026:** the stable HTTPS app, `/privacy` and `/health` load without login. The fictional sample completes against hosted PostgreSQL, including a precise venue repair, a simulated source conflict, one verified sample outcome and two skipped posts. Records and the browser result survived an application-container restart. These are hosted sample results, not Buffer write results.
 
-_Local sample screenshot; no Buffer posts changed._
+**Buffer evidence — 8 November 2026:** ordinary OAuth connected the existing account at this public URL, discovered its owned Facebook Page and completed an empty bounded post import. Six fresh live read receipts returned HTTP 200 without GraphQL errors. The encrypted connection and selected organization survived an application restart; fresh account/channel reads then succeeded. [Deployed OAuth evidence](outputs/deployed-oauth-evidence.json) records the checks. The six [October receipts](outputs/read-only-test-evidence.json) remain separate historical evidence.
+
+**Live writes are blocked — write authorization not granted.** The existing Meta grant is read-only. No live format is enabled, no Meta permission was expanded, and no live post was created, repaired or scheduled in this sprint.
+
+The existing Lightsail VM stays running; it has no free-tier idle sleep. App restarts cause a brief interruption, and shared-host load can slow requests. Existing VM charges continue; this sprint created no new billable cloud resource or paid domain. See [operations and recovery](docs/deployment.md).
+
+The sample needs no account and never calls Buffer. Its apply button says **Simulate updates**. See [deployment evidence](outputs/deployment-evidence.json) and [build-window provenance](docs/build-log.md) for dated checks and source revisions. Registration, submission and video recording remain the entrant's tasks.
+
+![Hosted fictional sample: an exact venue repair from Mill Studio to River Studio while the original date, time and unrelated writing remain unchanged.](docs/images/hosted-venue-review.png)
+
+_Hosted sample screenshot; no Buffer posts changed._
 
 ## Run locally
 
@@ -83,4 +93,4 @@ Assets are PNGs at stable opaque `/media/:id` URLs served from the durable datab
 
 See `docs/deployment.md`, `docs/privacy.md`, `CHECKLIST.md`, and `docs/verification.md`. The project-specific UI decisions are in `design.md`; the unchanged supplied specification is `PRD.md`.
 
-The October 25 implementation predates the Buffer Commit build window. November 8 adds downloadable repair reports, a guided sample journey and connection-availability guidance. [Build provenance](docs/build-log.md) separates these additions; no earlier work is relabeled. The prepared demo script and overview under `outputs/` are drafts. No submission or live working video is claimed.
+The October 25 implementation predates the Buffer Commit build window. November 8 adds downloadable repair reports, a guided sample journey, connection-availability guidance, production configuration checks, isolated Docker/PostgreSQL hosting and credential-free read-receipt summaries. [Build provenance](docs/build-log.md) separates these additions; no earlier work is relabeled. The demo script and overview under `outputs/` describe the observed release and its read-only limit. No submission or live working video is claimed.

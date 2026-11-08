@@ -1,0 +1,58 @@
+{
+  "capturedAt": "2026-11-08T07:16:49.911057+00:00",
+  "url": "https://changeboard.52.202.25.181.sslip.io",
+  "runtimeCommit": "5151595d1eefe7882f6b186d6812fa00969eabf0",
+  "provider": "Existing AWS Lightsail instance; no new billable cloud resource created",
+  "nodeVersion": "v22.23.4",
+  "postgresVersion": "17.11",
+  "verifiedHttpsPaths": [
+    "/",
+    "/health",
+    "/privacy",
+    "/media/<fictional-poster-id>"
+  ],
+  "anonymousHostedSample": {
+    "complete": true,
+    "changedFact": "venue only",
+    "confirmedPhrases": 6,
+    "simulatedSourceConflict": true,
+    "verifiedSampleOperations": 1,
+    "skippedSampleOperations": 2,
+    "mobileViewport": 375,
+    "mobileScrollWidth": 375,
+    "reducedMotion": true,
+    "applicationAlerts": []
+  },
+  "applicationRestart": {
+    "at": "2026-11-08T07:14:32.307310+00:00",
+    "postgresRecordsPreserved": true,
+    "browserResultReloaded": true,
+    "campaignCount": 1,
+    "operationCount": 3
+  },
+  "cleanCloneChecks": {
+    "install": "passed",
+    "typecheck": "passed",
+    "testsPassed": 86,
+    "productionBuild": "passed"
+  },
+  "deployedOAuth": {
+    "status": "passed",
+    "evidence": "deployed-oauth-evidence.json",
+    "encryptedConnectionRetained": true,
+    "selectedOrganizationRetained": true,
+    "freshReadsAfterRestart": true
+  },
+  "liveWrites": {
+    "status": "blocked - write authorization not granted",
+    "attempted": 0,
+    "liveFormatsEnabled": 0
+  },
+  "evidenceBoundary": "Hosted sample operations are fictional and do not call Buffer. November deployed OAuth/read receipts are separate provider proof; no live repair or write was attempted.",
+  "resourceLimits": {
+    "appMemoryMiB": 384,
+    "postgresMemoryMiB": 128,
+    "appCpu": 0.5,
+    "postgresCpu": 0.25
+  }
+}

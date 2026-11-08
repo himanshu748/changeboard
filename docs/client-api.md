@@ -28,3 +28,5 @@ API routes return JSON except the report download described below. Errors `{erro
 No browser-supplied mutation payload is sent directly to Buffer. Preview selections, facts and snapshots are saved/versioned before approval; any change invalidates the prior change set.
 
 Explicit `POST /api/organization` selection refreshes remote account/channel discovery even within the normal five-minute client cache. This lets a newly connected Page appear immediately without restarting the service.
+
+`AppState.connection.readReceipts` is a session-owned projection of up to six recent read requests: operation, timestamp, HTTP status, transport/API-error flags and a returned-post count when the response supports it. Raw payloads, provider IDs, cursors, captions and credentials remain server-side. The UI treats an HTTP response separately from repair verification.

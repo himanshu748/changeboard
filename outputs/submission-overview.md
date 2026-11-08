@@ -1,21 +1,17 @@
-# Changeboard — overview draft
+# Changeboard
 
-**Unsubmitted draft · 8 November 2026.** Current limits are explicit. Replace them only after the corresponding live evidence exists.
+Public app: https://changeboard.52.202.25.181.sslip.io
 
----
+An event time changes, and twelve scheduled posts are suddenly wrong. For a small venue or workshop organizer, finding every reference means checking differently worded captions, reminders and graphics while trying to preserve the writing that already works. One missed announcement can keep sending people to the old plan.
 
-Changeboard helps independent workshop organizers and small venues repair event campaigns after a date, time or venue changes. Old details can remain scattered across differently written captions, reminder schedules and graphics. The app connects the facts to the posts already written, preserving unrelated copy.
+Changeboard helps repair that campaign. An organizer selects up to six existing posts per review, confirms the original event facts and connects them to exact caption phrases. Changing a date, time, venue or address produces complete before-and-after captions. Confirmed associations can be reused for the next change, so the organizer reviews precise repairs rather than rewriting every announcement.
 
-An organizer selects up to six existing posts, confirms the original event details and reviews exact caption phrases. Deterministic suggestions and manual occurrence selection make each association explicit. Changing a fact produces complete before-and-after captions. Verified snapshots and confirmed associations persist, so a later change can reuse them.
+Images and publication context receive separate attention. A caption edit does not make an old flyer accurate. Organizers inspect a replacement poster before acknowledging it for that revision. Relative reminders require a confirmed publication time. Posts with changed source content are withheld from the approved set. Individual results keep skipped and uncertain work visible, including the warning that skipping a scheduled post does not stop publication.
 
-Review covers publication context, timezone-aware reminders and images. Relative wording such as “tomorrow” requires a confirmed publication time. A caption edit never automatically clears an image warning: organizers inspect a generated poster or upload a replacement for that revision. Changed source content withholds a repair until fresh review.
+The deployed Buffer integration uses ordinary OAuth with PKCE, encrypted server-side tokens, organization/channel discovery and bounded post reads. On November 8, six real read receipts returned HTTP 200 without API errors, including discovery of the existing owned Facebook Page and an empty post import. The encrypted connection and selected organization survived an application restart; fresh reads succeeded afterward. These checks ran at the stable public HTTPS URL with PostgreSQL persistence.
 
-Approved changes become immutable server-side change sets. A durable worker checks each source before writing and verifies individual outcomes afterward. Partial failures, skipped posts and uncertain outcomes remain visible. Published announcements use separate correction drafts. The new downloadable repair report distinguishes proposals from recorded outcomes and highlights schedules that still need attention, supporting handoff to another organizer.
+The hosted fictional sample demonstrates exact-phrase repair, reviewed image replacement, simulated conflict detection and one verified sample update with two skipped posts. Sample operations never call Buffer.
 
-The Buffer integration uses OAuth with PKCE, account/channel discovery, bounded post reads, narrow edits and draft creation. Historical live checks verified first-account OAuth, owned-Page discovery and an empty post import. Nonempty repairs, independent-account access and public media remain unverified; live write formats stay disabled. The fictional local sample makes no Buffer calls.
+Live writes are blocked because write authorization has not been granted. No real post was created, repaired or scheduled in this sprint, and no new Meta permissions were requested.
 
-Next steps are authorized live repair validation, durable public hosting, organizer walkthroughs and a live demo video. No time savings or customer demand are claimed. October 25 implementation remains pre-window work. November 8 adds repair-report downloads and first-use guidance; only the new elements are candidates for build-window judging.
-
----
-
-Submission still needs the verified hosted URL, app client ID, live working video, entrant details and build-window provenance. This file has not been submitted.
+November additions include downloadable repair reports, guided first use, production configuration checks, durable deployment and visible read receipts. The underlying October implementation remains identified as pre-window work. Next steps are organizer walkthroughs, backup restoration testing and a real repair only if separately authorized. No measured time savings or customer demand are claimed.

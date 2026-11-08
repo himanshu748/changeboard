@@ -1,0 +1,106 @@
+{
+  "receipts": [
+    {
+      "at": "2026-11-08T07:25:17.559Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T07:25:28.236Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T07:25:28.311Z",
+      "operation": "channels",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T07:25:36.898Z",
+      "operation": "posts",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T07:27:16.593Z",
+      "operation": "account",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    },
+    {
+      "at": "2026-11-08T07:27:16.733Z",
+      "operation": "channels",
+      "kind": "read",
+      "httpStatus": 200,
+      "outcome": "response",
+      "apiErrors": false
+    }
+  ],
+  "channels": [
+    {
+      "service": "facebook",
+      "type": "page",
+      "timezone": "Asia/Kolkata",
+      "isDisconnected": false,
+      "isLocked": false
+    }
+  ],
+  "postRead": {
+    "pageSize": 20,
+    "returnedPosts": 0,
+    "hasNextPage": false,
+    "selectedChannelOnly": true
+  },
+  "date": "2026-11-08",
+  "capturedAt": "2026-11-08T07:28:53.709603+00:00",
+  "url": "https://changeboard.52.202.25.181.sslip.io",
+  "runtimeCommit": "5151595d1eefe7882f6b186d6812fa00969eabf0",
+  "registeredCallback": "https://changeboard.52.202.25.181.sslip.io/api/auth/callback",
+  "registeredPrivacyUrl": "https://changeboard.52.202.25.181.sslip.io/privacy",
+  "existingClientUpdated": true,
+  "oauthFlow": "ordinary authorization-code PKCE on deployed origin; existing account and scopes",
+  "restart": {
+    "at": "2026-11-08T07:26:51.342941+00:00",
+    "appRestarted": true,
+    "encryptedConnectionUnchanged": true,
+    "postgresRecordsPreserved": true,
+    "otherContainerStatesUnchanged": true,
+    "before": {
+      "encryptedConnections": 1,
+      "connected": 1,
+      "selectedOrganizations": 1,
+      "operations": 3,
+      "liveWriteReceipts": 0
+    },
+    "after": {
+      "encryptedConnections": 1,
+      "connected": 1,
+      "selectedOrganizations": 1,
+      "operations": 3,
+      "liveWriteReceipts": 0
+    },
+    "browserReloadAndFreshRead": "passed"
+  },
+  "browserAfterRestart": {
+    "connected": true,
+    "selectedOrganizationRetained": true,
+    "ownedChannelRetained": true,
+    "freshAccountAndChannelReadsSucceeded": true
+  },
+  "postWriteCalls": 0,
+  "liveWriteFormatsEnabled": false,
+  "liveWriteStatus": "blocked - write authorization not granted"
+}
