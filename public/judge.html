@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Try Changeboard's fictional sample and inspect the separately verified real Buffer draft repair."
+    />
+    <title>Review Changeboard — judge guide</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: #171c1c;
+        background: #f7f5f0;
+        line-height: 1.65;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      a {
+        color: #0b5d57;
+        text-underline-offset: 4px;
+        overflow-wrap: anywhere;
+      }
+      a:focus-visible {
+        outline: 3px solid #0f766e;
+        outline-offset: 5px;
+        border-radius: 3px;
+      }
+      .skip {
+        position: absolute;
+        left: 16px;
+        top: -80px;
+        padding: 12px;
+        background: #fff;
+        z-index: 2;
+      }
+      .skip:focus {
+        top: 12px;
+      }
+      header,
+      main,
+      footer {
+        width: min(100% - 48px, 1040px);
+        margin-inline: auto;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-block: 28px;
+        border-bottom: 1px solid #d7dedc;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 750;
+        font-size: 23px;
+        letter-spacing: -1px;
+        color: inherit;
+        text-decoration: none;
+      }
+      .brand img {
+        width: 32px;
+        height: 32px;
+      }
+      header nav,
+      .actions,
+      .evidence-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px 24px;
+      }
+      header nav a,
+      footer a {
+        padding-block: 10px;
+      }
+      main {
+        padding-block: 64px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.17em;
+        font-size: 11px;
+        font-weight: 700;
+        color: #596763;
+      }
+      h1 {
+        font-size: clamp(36px, 6vw, 62px);
+        line-height: 1.06;
+        letter-spacing: -0.045em;
+        font-weight: 550;
+        max-width: 770px;
+        margin: 18px 0 22px;
+      }
+      h2 {
+        font-size: 28px;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        font-weight: 600;
+        margin: 10px 0 18px;
+      }
+      h3 {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      p {
+        margin: 0 0 18px;
+      }
+      .lead {
+        max-width: 730px;
+        font-size: 19px;
+        color: #596763;
+      }
+      .actions {
+        margin: 28px 0 40px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 19px;
+        min-height: 46px;
+        border: 1px solid #0f766e;
+        border-radius: 5px;
+        font-weight: 600;
+        text-decoration: none;
+        background: #0f766e;
+        color: #fff;
+      }
+      .button.secondary {
+        background: transparent;
+        color: #0b5d57;
+        border-color: #b4c4bd;
+      }
+      .scope {
+        padding: 22px 26px;
+        border: 1px solid #e2ccb0;
+        border-left: 3px solid #92400e;
+        background: #fff7e9;
+        border-radius: 5px;
+      }
+      .scope h2 {
+        font-size: 18px;
+        margin: 0 0 10px;
+      }
+      .scope p:last-child {
+        margin-bottom: 0;
+      }
+      section {
+        scroll-margin-top: 28px;
+        margin-top: 50px;
+      }
+      .card {
+        padding: 30px;
+        border: 1px solid #d7dedc;
+        background: #fff;
+        border-radius: 7px;
+      }
+      ol {
+        padding-left: 24px;
+        margin: 22px 0 0;
+      }
+      li {
+        padding-left: 6px;
+        margin-bottom: 14px;
+      }
+      .tag {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 4px;
+        background: #eaf5f0;
+        color: #0b5d57;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .tag.sample {
+        background: #fff5df;
+        color: #92400e;
+      }
+      .repair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 26px 0;
+      }
+      .repair div {
+        padding: 20px;
+        background: #f6f7f3;
+        border: 1px solid #d7dedc;
+        border-radius: 5px;
+      }
+      .repair strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        color: #596763;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .repair p {
+        margin: 0;
+      }
+      mark {
+        background: #dcecd9;
+        color: #193e2c;
+        padding: 1px 3px;
+      }
+      .muted {
+        color: #596763;
+        font-size: 14px;
+      }
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+        padding: 24px 0 40px;
+        border-top: 1px solid #d7dedc;
+        font-size: 14px;
+      }
+      @media (max-width: 600px) {
+        header,
+        main,
+        footer {
+          width: calc(100% - 36px);
+        }
+        header {
+          align-items: flex-start;
+          flex-wrap: wrap;
+          padding-block: 20px;
+        }
+        main {
+          padding-block: 38px;
+        }
+        .card {
+          padding: 22px 18px;
+        }
+        .scope {
+          padding: 20px;
+        }
+        .repair {
+          grid-template-columns: 1fr;
+        }
+        .lead {
+          font-size: 17px;
+        }
+        section {
+          margin-top: 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to judge guide</a>
+    <header>
+      <a class="brand" href="/"
+        ><img src="/favicon.svg" alt="" />changeboard.</a
+      >
+      <nav aria-label="Review resources">
+        <a href="#sample">Try the sample</a><a href="#live-proof">Live proof</a
+        ><a href="https://github.com/himanshu748/changeboard">Source</a>
+      </nav>
+    </header>
+    <main id="main" tabindex="-1">
+      <span class="eyebrow">A guide for reviewers</span>
+      <h1>Change one event fact.<br />Review the precise repair.</h1>
+      <p class="lead">
+        For workshop organizers and small venues whose plans change after the
+        campaign is written. Connect facts to exact phrases, review the proposed
+        changes, and keep unresolved work visible.
+      </p>
+      <div class="actions">
+        <a class="button" href="/">Open the sample workspace</a
+        ><a class="button secondary" href="#live-proof"
+          >Inspect the real Buffer repair</a
+        >
+      </div>
+      <aside class="scope" aria-label="Current live access">
+        <h2>What you can test today</h2>
+        <p>
+          The sample needs no account and makes no Buffer calls. Ordinary Buffer
+          OAuth and reads were verified with one account.
+        </p>
+        <p>
+          <strong
+            >Live writes are restricted to the exact validated test draft and
+            its existing Page.</strong
+          >
+          A judge's other posts stay withheld by that receipt. The real repair,
+          provider readback and restart proof are available below. Scheduling,
+          publishing, images and correction creation are outside that live test.
+        </p>
+      </aside>
+      <section id="sample" class="card" aria-labelledby="sample-title">
+        <span class="tag sample">Fictional sample · no login</span>
+        <h2 id="sample-title">Follow the venue change</h2>
+        <p>
+          Use a fresh browser profile if you already have an active workspace.
+          Leave the <strong>Sample workspace</strong> label visible.
+        </p>
+        <ol>
+          <li>
+            Open <strong>Try the sample campaign</strong>. Select the three
+            scheduled posts, then <strong>Review facts</strong>.
+          </li>
+          <li>
+            Keep the original facts. Choose
+            <strong>Confirm current facts</strong>, then review and confirm the
+            six suggested exact phrases.
+          </li>
+          <li>
+            Under <strong>The new plan</strong>, change only
+            <strong>Venue name</strong> to <strong>River Studio</strong>. Keep
+            November 21 and 18:00 unchanged. Choose
+            <strong>Preview changes</strong>.
+          </li>
+          <li>
+            Compare the full captions. On the first post, choose
+            <strong>Use updated event poster</strong>, inspect it and
+            acknowledge its accuracy for this revision. Leave the second image
+            unresolved.
+          </li>
+          <li>
+            On the third post, open <strong>Test an external edit</strong> and
+            choose <strong>Simulate edit in Buffer</strong>. Its changed source
+            is withheld.
+          </li>
+          <li>
+            Check that one post is eligible. Choose
+            <strong>Simulate updates to 1 post</strong>. Inspect one verified
+            sample result and two skips. The skipped schedules remain unchanged.
+          </li>
+          <li>
+            Download the repair report. Try another venue change to inspect
+            retained associations and renewed image review.
+          </li>
+        </ol>
+        <p class="muted">
+          These outcomes are simulated. They demonstrate review, image warnings
+          and conflict handling; they are separate from the live API evidence.
+        </p>
+      </section>
+      <section id="live-proof" class="card" aria-labelledby="live-title">
+        <span class="tag">Verified live · 8 November 2026</span>
+        <h2 id="live-title">One real unpublished draft repair</h2>
+        <p>
+          The content was fictional; the Buffer API operation was real. The
+          deployed app imported the authorized draft, confirmed its venue
+          phrase, re-fetched before editing and verified the provider's
+          readback.
+        </p>
+        <div class="repair">
+          <div>
+            <strong>Before</strong>
+            <p>
+              Changeboard test only — Fictional workshop at River Studio. Do not
+              publish.
+            </p>
+          </div>
+          <div>
+            <strong>Verified after</strong>
+            <p>
+              Changeboard test only — Fictional workshop at
+              <mark>Garden Studio</mark>. Do not publish.
+            </p>
+          </div>
+        </div>
+        <p>
+          One application attempt succeeded. Buffer independently showed
+          <strong>Unscheduled / No time / Draft</strong>, with zero queued and
+          zero sent posts. The saved result and encrypted connection survived an
+          application restart; a fresh provider read still matched.
+        </p>
+        <nav class="evidence-links" aria-label="Real repair evidence">
+          <a
+            href="https://github.com/himanshu748/changeboard/blob/main/outputs/live-draft-repair-evidence.json"
+            >Dated receipt</a
+          ><a
+            href="https://github.com/himanshu748/changeboard/blob/main/docs/images/buffer-draft-readback.jpg"
+            >Buffer readback screenshot</a
+          ><a
+            href="https://github.com/himanshu748/changeboard/blob/main/outputs/live-draft-repair-report.md"
+            >Saved repair report</a
+          >
+        </nav>
+        <p class="muted" style="margin-top: 22px">
+          The report is recorded application state. The dated receipt separately
+          identifies fresh provider observations. Other live formats and a
+          second account have not been verified.
+        </p>
+      </section>
+      <section aria-labelledby="new-title">
+        <h2 id="new-title">What changed in November</h2>
+        <p>
+          Repair-report downloads, first-use guidance, durable PostgreSQL
+          hosting, visible read receipts, scoped write evidence and the Facebook
+          draft payload fix were added during the build window. The October
+          implementation remains identified as pre-window work.
+        </p>
+        <a
+          href="https://github.com/himanshu748/changeboard/blob/main/docs/build-log.md"
+          >Inspect the dated build log and source revisions</a
+        >
+      </section>
+    </main>
+    <footer>
+      <a href="/">Open Changeboard</a><a href="/privacy">Privacy</a
+      ><a
+        href="https://github.com/himanshu748/changeboard/blob/main/docs/judge-walkthrough.md"
+        >Detailed walkthrough</a
+      >
+    </footer>
+  </body>
+</html>

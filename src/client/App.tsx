@@ -541,9 +541,14 @@ export default function App() {
           <Brand />{" "}
           <span className="footer-tagline">Your words, kept in sync.</span>
         </span>
-        <button className="text-button" onClick={() => setSettings(true)}>
-          Privacy & connection
-        </button>
+        <nav className="footer-actions" aria-label="Product information">
+          <a className="text-button" href="/judge.html">
+            Judge guide
+          </a>
+          <button className="text-button" onClick={() => setSettings(true)}>
+            Privacy & connection
+          </button>
+        </nav>
       </footer>
       {settings && state && (
         <Settings

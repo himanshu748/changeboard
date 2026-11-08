@@ -464,6 +464,16 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.footer-actions .text-button {
+  min-height: 44px;
 }
 .site-footer > span {
   display: flex;
