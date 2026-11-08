@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-08",
+  "capturedAt": "2026-11-08T08:13:53.746182+00:00",
+  "url": "https://changeboard.52.202.25.181.sslip.io",
+  "providerSmokeTest": true,
+  "throughDeployedApp": false,
+  "authorization": "One fictional unpublished draft on the existing owned Facebook Page; no publishing, scheduling, deletion or new permissions",
+  "create": {
+    "phase": "create",
+    "at": "2026-11-08T08:05:02.332Z",
+    "verified": true,
+    "error": null,
+    "receipts": [
+      {
+        "id": "a3ed573b-e6fc-44a5-b252-44640c85db71",
+        "at": "2026-11-08T08:05:03.507Z",
+        "operation": "createPost",
+        "kind": "write",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "id": "f784939f-ad76-45b3-a6f9-1af89662dcaf",
+        "at": "2026-11-08T08:05:03.683Z",
+        "operation": "post",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      }
+    ],
+    "fixture": {
+      "status": "draft",
+      "text": "Changeboard test only \u2014 Fictional workshop at Mill Studio. Do not publish.",
+      "scheduled": false,
+      "sent": false
+    }
+  },
+  "smoke": {
+    "phase": "smoke",
+    "at": "2026-11-08T08:10:49.855Z",
+    "verified": true,
+    "error": null,
+    "receipts": [
+      {
+        "id": "2785ea8a-7a36-4215-a4cc-4a6687975a4e",
+        "at": "2026-11-08T08:10:50.524Z",
+        "operation": "post",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "id": "542d5ff7-42d9-42dc-96c8-257bde0ffea8",
+        "at": "2026-11-08T08:10:50.591Z",
+        "operation": "editPost",
+        "kind": "write",
+        "httpStatus": 200,
+        "outcome": "response"
+      },
+      {
+        "id": "a73087e3-0d37-4c0a-b655-512de945e1aa",
+        "at": "2026-11-08T08:10:50.699Z",
+        "operation": "post",
+        "kind": "read",
+        "httpStatus": 200,
+        "outcome": "response"
+      }
+    ],
+    "repair": {
+      "before": "Changeboard test only \u2014 Fictional workshop at Mill Studio. Do not publish.",
+      "after": "Changeboard test only \u2014 Fictional workshop at River Studio. Do not publish.",
+      "status": "draft",
+      "unrelatedFieldsPreserved": true
+    }
+  },
+  "rejectedAttempts": [
+    {
+      "operation": "createPost",
+      "httpStatus": 200,
+      "typename": "InvalidInputError",
+      "message": "Invalid post: Facebook posts require a type (post, story, or reel).",
+      "postCreatedOrEdited": false
+    },
+    {
+      "operation": "editPost",
+      "httpStatus": 200,
+      "typename": "InvalidInputError",
+      "message": "Invalid post: Facebook posts require a type (post, story, or reel).",
+      "postCreatedOrEdited": false
+    }
+  ],
+  "unchangedFields": [
+    "destination",
+    "draft status",
+    "dueAt",
+    "sentAt",
+    "assets",
+    "tags",
+    "metadata",
+    "shareMode",
+    "schedulingType",
+    "createdAt"
+  ],
+  "gatePrepared": {
+    "key": "facebook:page:text",
+    "draftCaptionEditsOnly": true,
+    "oneChannelOnly": true,
+    "oneFixtureOnly": true,
+    "createCorrectionDraft": false,
+    "scheduledPosts": false,
+    "images": false
+  },
+  "evidenceBoundary": "This is a controlled real provider smoke test. The separate application repair remains pending; it is not simulated evidence.",
+  "runtimeCommit": "5151595d1eefe7882f6b186d6812fa00969eabf0",
+  "requestContract": {
+    "createDraft": {
+      "saveToDraft": true,
+      "metadata": {
+        "facebook": {
+          "type": "post"
+        }
+      },
+      "dueAtProvided": false
+    },
+    "captionEdit": {
+      "fields": [
+        "id",
+        "text",
+        "metadata.facebook.type",
+        "saveToDraft"
+      ],
+      "saveToDraft": true,
+      "metadata": {
+        "facebook": {
+          "type": "post"
+        }
+      },
+      "dueAtProvided": false
+    }
+  }
+}

@@ -135,4 +135,5 @@ export interface AppState {
     }[];
   };
   liveVerifiedServices: string[];
+  liveWriteNotice?: string;
 }

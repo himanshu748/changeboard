@@ -183,4 +183,10 @@ export interface LiveFormatEvidence {
   key: string;
   verifiedAt: string;
   receiptId: string;
+  /** Optional operator restriction; a narrow draft test must not unlock other writes. */
+  scope?: {
+    draftTextEditsOnly: true;
+    channelId: string;
+    postIds: string[];
+  };
 }

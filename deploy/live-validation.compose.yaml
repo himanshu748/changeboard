@@ -1,0 +1,12 @@
+# Optional overlay. The file must contain genuine provider evidence and narrow scope.
+services:
+  app:
+    environment:
+      LIVE_FORMAT_EVIDENCE_FILE: /run/changeboard/live-evidence.json
+    volumes:
+      - type: bind
+        source: ${CHANGEBOARD_LIVE_EVIDENCE_PATH:?Set the private validated evidence path}
+        target: /run/changeboard/live-evidence.json
+        read_only: true
+        bind:
+          create_host_path: false

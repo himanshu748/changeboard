@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { liveFormatAllows, type LiveWriteContext } from "./evidence";
 import {
   ACCOUNT_QUERY,
   CHANNELS_QUERY,
@@ -328,8 +329,18 @@ export class BufferClient {
   ): Promise<BufferPost> {
     const reason = unsupportedReason(current);
     if (reason) throw new BufferApiError(reason, "unsupported");
-    this.assertLiveFormat(current.channel, current.assets.length > 0);
-    if (edit.replacementImage) this.assertLiveFormat(current.channel, true);
+    const context = {
+      operation: "edit" as const,
+      postId: current.id,
+      status: current.status,
+      captionOnly:
+        current.assets.length === 0 &&
+        typeof edit.text === "string" &&
+        Object.keys(edit).every((key) => key === "text"),
+    };
+    this.assertLiveFormat(current.channel, current.assets.length > 0, context);
+    if (edit.replacementImage)
+      this.assertLiveFormat(current.channel, true, context);
     if (!["draft", "scheduled"].includes(current.status))
       throw new BufferApiError(
         "Only draft or scheduled posts can be repaired.",
@@ -353,10 +364,17 @@ export class BufferClient {
         "Buffer does not permit moving this post to draft.",
         "authentication",
       );
+    const input = narrowEditInput(current.id, edit);
+    if (current.status === "draft" && current.channel.service === "facebook") {
+      // Verified against the live API: Facebook draft edits require an explicit type.
+      // Keep draft status explicit; this path must never enqueue the unpublished post.
+      input.metadata = { facebook: { type: "post" } };
+      input.saveToDraft = true;
+    }
     const data = await this.request(
       "editPost",
       EDIT_POST_MUTATION,
-      { input: narrowEditInput(current.id, edit) },
+      { input },
       "write",
     );
     return this.mutationPost(data.editPost);
@@ -387,7 +405,7 @@ export class BufferClient {
         "authentication",
       );
     }
-    this.assertLiveFormat(channel, !!parsed.image);
+    this.assertLiveFormat(channel, !!parsed.image, { operation: "create" });
     if (channel.service === "instagram" && !parsed.image)
       throw new BufferApiError(
         "An Instagram correction draft requires a reviewed image.",
@@ -423,7 +441,11 @@ export class BufferClient {
     return post;
   }
 
-  private assertLiveFormat(channel: BufferChannel, image: boolean) {
+  private assertLiveFormat(
+    channel: BufferChannel,
+    image: boolean,
+    context: Omit<LiveWriteContext, "key" | "channelId">,
+  ) {
     if (
       !(channel.service === "facebook" && channel.type === "page") &&
       !(
@@ -438,15 +460,12 @@ export class BufferClient {
     }
     const key = formatKey(channel, image);
     if (
-      !this.options.verifiedFormats?.some(
-        (evidence) =>
-          evidence.key === key &&
-          evidence.receiptId &&
-          Number.isFinite(Date.parse(evidence.verifiedAt)),
+      !this.options.verifiedFormats?.some((evidence) =>
+        liveFormatAllows(evidence, { ...context, key, channelId: channel.id }),
       )
     ) {
       throw new BufferApiError(
-        `Live ${key} writes are not enabled: a dated live-test receipt is required.`,
+        `Live ${key} writes are not enabled for this operation: a matching dated live-test receipt and scope are required.`,
         "unsupported",
       );
     }

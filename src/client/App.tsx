@@ -504,6 +504,12 @@ export default function App() {
                 </p>
               </div>
             )}
+            {campaign.mode === "live" && state.liveWriteNotice && (
+              <div className="notice amber">
+                <ShieldCheck size={18} />
+                <p>{state.liveWriteNotice}</p>
+              </div>
+            )}
             {campaign.stage === "choose" && (
               <ChoosePosts
                 key={campaign.id}

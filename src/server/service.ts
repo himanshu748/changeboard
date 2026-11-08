@@ -25,6 +25,7 @@ import { jsonRow } from "./db";
 import { poster } from "./assets";
 import { sampleCampaign } from "./sample";
 import { readEvidence } from "./read-evidence";
+import { liveFormatAllows } from "../buffer/evidence";
 import {
   getConnection,
   configured,
@@ -113,6 +114,9 @@ export async function stateFor(
     liveVerifiedServices: [
       ...new Set(evidence.map((e) => e.key.split(":")[0])),
     ],
+    liveWriteNotice: evidence.some((e) => e.scope)
+      ? "Live writes are limited to caption edits on explicitly validated unpublished test drafts. Scheduling, publishing, images and correction drafts are not enabled by this test."
+      : undefined,
   };
 }
 export function requireCampaign(c: Campaign | undefined): Campaign {
@@ -279,6 +283,7 @@ export async function preparePreview(
         { ...p.schedule, cutoffMinutes },
       );
       const issues = [...repair.issues];
+      const isMove = action?.postId === before.id;
       if (fingerprintSnapshot(before) !== fingerprintSnapshot(current))
         issues.push({
           code: "EXTERNAL_EDIT",
@@ -290,16 +295,30 @@ export async function preparePreview(
         });
       if (c.mode === "live") {
         const key = `${before.service}:${String(before.metadata.channelType)}:${before.assets.length ? "single-image" : "text"}`;
-        if (!evidence.some((e) => e.key === key))
+        if (
+          !evidence.some((e) =>
+            liveFormatAllows(e, {
+              key,
+              channelId: before.channelId,
+              postId: before.id,
+              status: before.status,
+              operation: "edit",
+              captionOnly:
+                !isMove &&
+                before.assets.length === 0 &&
+                repair.scheduledAt === before.scheduledAt &&
+                repair.mode === before.mode,
+            }),
+          )
+        )
           issues.push({
             code: "UNVERIFIED_CHANNEL",
-            message: `Live ${key} writes require a dated verification receipt.`,
+            message: `Live ${key} writes require a matching dated verification receipt and operation scope.`,
             severity: "error",
           });
       }
       const media = clone(p.media);
       let assets = clone(before.assets);
-      const isMove = action?.postId === before.id;
       if (!isMove && before.assets.length) {
         if (
           media.revision !== c.revision ||

@@ -9,6 +9,7 @@ import {
   encryptTokens,
   decryptTokens,
   unsupportedReason,
+  LiveFormatEvidenceSchema,
 } from "../buffer";
 import type {
   BufferChannel,
@@ -115,16 +116,10 @@ export async function liveEvidence(): Promise<LiveFormatEvidence[]> {
   );
   if (!Array.isArray(raw))
     throw new Error("Live format evidence must be an array.");
-  return raw.filter(
-    (e): e is LiveFormatEvidence =>
-      !!e &&
-      typeof e === "object" &&
-      typeof e.key === "string" &&
-      typeof e.receiptId === "string" &&
-      !!e.receiptId &&
-      typeof e.verifiedAt === "string" &&
-      Number.isFinite(Date.parse(e.verifiedAt)),
-  );
+  return raw.flatMap((entry) => {
+    const parsed = LiveFormatEvidenceSchema.safeParse(entry);
+    return parsed.success ? [parsed.data] : [];
+  });
 }
 async function recordReceipt(
   db: Database,
