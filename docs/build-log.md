@@ -8,7 +8,13 @@ Official terms checked: https://buffer.com/api/commit/terms (updated October 13,
 
 ## Eligible-window changes
 
-None recorded yet. Record the actual date, new functionality, source revision and evidence as work happens; do not backdate work or relabel pre-window functionality. No registration or submission has been performed in this chat.
+### 8 November 2026 — repair handoff and first-use guidance
+
+New functionality: a session-owned downloadable Markdown repair report from Review and Results. It separates unapplied proposals from recorded operation outcomes, includes caption/publication comparisons, warns that skipped posts remain scheduled, and directs uncertain outcomes to observation before retry. Literal fenced content prevents captions from injecting report Markdown. Credentials, internal account/operation IDs and media URLs are not included as report fields. Campaign captions remain user content and must be reviewed before sharing.
+
+First-use improvements: stage-specific sample guidance, explicit simulated-apply labeling, a repeat-change example, connection details instead of OAuth links on unconfigured installations, and an early warning when a live installation has no verified write formats. These are changes to the existing October implementation, not a new claim about the original mechanism.
+
+Evidence: four report behavior tests and an HTTP/SQL download/isolation/no-mutation test, bringing the suite to 84 tests. Browser observations, current rule mapping and remaining release gates are recorded in [judge-walkthrough.md](judge-walkthrough.md). No live writes, deployment or submission are part of these additions. The initial GitHub import is `776db34`; the November 8 changes are the diff after that baseline. Only the new elements are candidates for build-window judging; Buffer decides eligibility and scoring.
 
 ## 25 October follow-up: approved temporary HTTPS and first live OAuth
 

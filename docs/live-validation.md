@@ -20,3 +20,12 @@ Use future dated, clearly fictional fixtures and record IDs/timestamps, with cre
 Store a redacted receipt for each observed format. `LIVE_FORMAT_EVIDENCE_FILE` is a release gate, not a substitute for these tests. Initial smoke writes must be conducted through a dedicated authorized validation harness after reviewing exact payloads, then the application can enable the verified format. Current app defaults to no live write formats.
 
 Record attempted failure as failure, not success. For unknown create outcomes, inspect Buffer and reconcile; never blindly retry.
+
+## Concrete fixture proposal — 8 November 2026
+
+Prepared for approval; not executed. Existing live testing permission is read-only. Use only the already owned test Page, after checking its current permissions. Create two **drafts**, with no publication time and no scheduling/publishing action:
+
+1. `Changeboard test only — Fictional workshop, 21 November 2026, 6 p.m., Mill Studio. Do not publish.`
+2. `Changeboard test only — Reminder for the fictional workshop at Mill Studio. Do not publish.`
+
+The reviewed repair changes only `Mill Studio` to `River Studio`. Verify a narrow edit on the first disposable fixture against the provider, then record its real text-format proof before enabling that format for the app. Import and repair through the ordinary user journey; use the second disposable fixture for a separately reviewed external-caption-change/conflict check. Read back both drafts, confirm that neither was scheduled or published, and download the recorded-outcome report. Do not delete fixtures or broaden the Page grant without authorization. If provider permissions or schema prevent the operation, stop that write and report the exact gap; do not invent evidence or enable a gate from a simulation.

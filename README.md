@@ -1,8 +1,16 @@
 # Changeboard
 
-Change one event fact. Repair the campaign.
+Change an event date, time or venue across the Buffer posts you already wrote. Review exact caption edits, publication times and images, then keep a record of what worked and what still needs attention.
 
-A TypeScript application for connecting event facts to precise phrases in existing Buffer posts, reviewing repairs and tracking each approved operation. The working local sample uses fictional Clay After Hours posts and a separate persisted simulated remote store. **The first live OAuth connection and account/channel reads now pass through an authorized temporary HTTPS tunnel.** The owned Facebook Page is connected with restricted read access, and its bounded post import passed with an empty result. Nonempty content/pagination, live mutations, a second account, durable hosting, and user validation remain acceptance gates. No contest submission has been performed. See `outputs/LIVE-SETUP.md`.
+Built for workshop organizers and small venues whose plans change after announcements and reminders have been scheduled. Confirm the phrases that refer to your event once; reuse them for the next change while keeping unrelated writing intact.
+
+**Try it:** run the local sample below. No Buffer account or paid service is required. The sample is fictional and never calls Buffer.
+
+**Current status:** the local sample journey works. Historical live validation on October 25 covered OAuth, channel discovery and an empty post import. Nonempty live imports, repairs and public media acceptance remain unverified; live write formats are disabled. There is no verified durable hosted app or contest video. Making this repository public does not satisfy those release requirements. See [the judge walkthrough and readiness review](docs/judge-walkthrough.md).
+
+![Fictional sample: a second venue change from River Studio to Garden Studio, with full caption comparison and a fresh image-review requirement.](docs/images/sample-repeat-review.png)
+
+_Local sample screenshot; no Buffer posts changed._
 
 ## Run locally
 
@@ -32,7 +40,8 @@ Run database tests sequentially on memory-constrained hosts. The test suites dis
 4. Review complete caption comparisons. Confirm fixed publication context or choose a different schedule strategy. Review every image for this revision; preview the generated poster before accepting it.
 5. Simulate a direct edit to a sample post. Refresh the preview to see it withheld. Select eligible operations and apply their immutable server change set.
 6. Results preserve successful, skipped, failed, conflicting and uncertain operations. A skipped scheduled post keeps its schedule. A correction is a separately reviewed new draft.
-7. Make another event change. Verified snapshots and exact association offsets are reused; unresolved posts retain their earlier baseline.
+7. Download the repair report from Review or Results. It separates unapplied proposals from recorded outcomes, includes caption/schedule comparisons and highlights skipped or uncertain work. Review its campaign content before sharing it.
+8. Make another event change. Verified snapshots and exact association offsets are reused; unresolved posts retain their earlier baseline.
 
 Sample mode never calls Buffer. The simulated external-edit control changes an independently stored source, so the same source-fingerprint check detects the conflict. AI extraction and OCR are unavailable; deterministic suggestions and manual confirmation are the implemented fallback. No unreviewed image is declared accurate.
 
@@ -45,7 +54,13 @@ The authorization flow requests `account:read posts:read posts:write offline_acc
 The app records bounded, credential-free API receipts privately inside each connection record, with app-wide Retry-After cooldown. Live formats default to disabled. After authorized tests on owned channels, supply `LIVE_FORMAT_EVIDENCE_FILE` with entries of this shape:
 
 ```json
-[{"key":"facebook:page:text","verifiedAt":"<actual ISO timestamp>","receiptId":"<actual receipt reference>"}]
+[
+  {
+    "key": "facebook:page:text",
+    "verifiedAt": "<actual ISO timestamp>",
+    "receiptId": "<actual receipt reference>"
+  }
+]
 ```
 
 Do not populate this file from simulated results. See `docs/api-verification.md` and `docs/live-validation.md`. Live Instagram correction drafts are withheld until a separately reviewed correction image is implemented and tested; the text-only correction path supports verified Facebook Page channels.
@@ -68,4 +83,4 @@ Assets are PNGs at stable opaque `/media/:id` URLs served from the durable datab
 
 See `docs/deployment.md`, `docs/privacy.md`, `CHECKLIST.md`, and `docs/verification.md`. The project-specific UI decisions are in `design.md`; the unchanged supplied specification is `PRD.md`.
 
-All functionality in this workspace was prepared before the Buffer Commit build window. Track eligible-window additions separately in `docs/build-log.md`. The prepared demo script and overview under `outputs/` are drafts, not a submitted entry or a claim of live integration success.
+The October 25 implementation predates the Buffer Commit build window. November 8 adds downloadable repair reports, a guided sample journey and connection-availability guidance. [Build provenance](docs/build-log.md) separates these additions; no earlier work is relabeled. The prepared demo script and overview under `outputs/` are drafts. No submission or live working video is claimed.

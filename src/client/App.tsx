@@ -32,6 +32,7 @@ import {
   Upload,
   ArrowLeft,
   Globe2,
+  Download,
 } from "lucide-react";
 import type {
   AppState,
@@ -326,11 +327,15 @@ export default function App() {
             <Badge kind="amber">Sample workspace</Badge>
           ) : state?.connection.status === "connected" ? (
             <Badge kind="teal">Buffer connected</Badge>
-          ) : (
+          ) : state?.connection.configured ? (
             <a className="text-link connect-link" href="/api/auth/buffer">
               Connect Buffer <ArrowUpRight size={14} />
             </a>
-          )}
+          ) : state ? (
+            <button className="text-button" onClick={() => setSettings(true)}>
+              Connection details
+            </button>
+          ) : null}
           <button
             className="icon-button"
             aria-label="Workspace settings"
@@ -388,7 +393,12 @@ export default function App() {
             <p>Opening your workspace…</p>
           </div>
         ) : !campaign ? (
-          <Introduction action={action} busy={busy} state={state} />
+          <Introduction
+            action={action}
+            busy={busy}
+            state={state}
+            onConnectionHelp={() => setSettings(true)}
+          />
         ) : (
           <div className="workspace">
             <div className="workspace-top">
@@ -467,11 +477,31 @@ export default function App() {
                   >
                     Open live account <ArrowUpRight size={13} />
                   </button>
-                ) : (
+                ) : state.connection.configured ? (
                   <a href="/api/auth/buffer">
                     Connect your account <ArrowUpRight size={13} />
                   </a>
+                ) : (
+                  <button
+                    className="text-button"
+                    onClick={() => setSettings(true)}
+                  >
+                    Connection details
+                  </button>
                 )}
+              </div>
+            )}
+            {campaign.mode === "sample" && <SampleGuide campaign={campaign} />}
+            {campaign.mode === "live" && !state.liveVerifiedServices.length && (
+              <div className="notice amber">
+                <CircleAlert size={18} />
+                <p>
+                  <strong>
+                    Live updates are not enabled on this installation yet.
+                  </strong>{" "}
+                  You can import posts and review proposed changes. Repairs stay
+                  blocked until the connected formats have been tested.
+                </p>
               </div>
             )}
             {campaign.stage === "choose" && (
@@ -525,10 +555,12 @@ function Introduction({
   action,
   busy,
   state,
+  onConnectionHelp,
 }: {
   action: Action;
   busy: boolean;
   state: AppState;
+  onConnectionHelp: () => void;
 }) {
   return (
     <div className="introduction">
@@ -557,14 +589,26 @@ function Introduction({
             >
               Try the sample campaign <ArrowRight size={17} />
             </button>
-            <a className="button subtle" href="/api/auth/buffer">
-              Connect Buffer <ArrowUpRight size={16} />
-            </a>
+            {state.connection.configured ? (
+              <a className="button subtle" href="/api/auth/buffer">
+                Connect Buffer <ArrowUpRight size={16} />
+              </a>
+            ) : (
+              <button className="button subtle" onClick={onConnectionHelp}>
+                About live connection <ArrowUpRight size={16} />
+              </button>
+            )}
           </div>
           <span className="hero-footnote">
             <ShieldCheck size={15} /> You review every change before it’s
             applied.
           </span>
+          <p className="helper hero-availability">
+            No account needed for the sample.{" "}
+            {state.connection.configured
+              ? "Connect your own Buffer account when you’re ready."
+              : "Live connection is not configured on this installation."}
+          </p>
         </div>
         <div className="hero-example">
           <div className="example-kicker">
@@ -648,6 +692,57 @@ function Introduction({
         </div>
       )}
     </div>
+  );
+}
+
+function SampleGuide({ campaign: c }: { campaign: Campaign }) {
+  const pending = c.posts
+    .flatMap((p) => p.bindings)
+    .filter((b) => !b.confirmed && !b.ignored).length;
+  const titles: Record<Stage, string> = {
+    choose: "Your task: move Clay After Hours to a new plan.",
+    facts: !c.factsConfirmed
+      ? "First, confirm the details in the original posts."
+      : pending
+        ? `Review ${pending} suggested ${pending === 1 ? "phrase" : "phrases"}, then enter the new plan.`
+        : "The phrases are reviewed. What changed?",
+    review: "Check the whole post, then choose what to simulate.",
+    results: "Check what worked and what still needs attention.",
+  };
+  const instructions: Record<Stage, string> = {
+    choose:
+      "Select the three scheduled posts, then Review facts. Include the published announcement if you want to try a separate correction draft.",
+    facts: !c.factsConfirmed
+      ? "Keep the current Saturday / Mill Studio details for now. Confirm current facts to unlock phrase review."
+      : c.revision > 0
+        ? "Confirmed phrases are reused. Try another venue, then Preview changes. Each attached image needs a new review for this plan. Nothing is applied yet."
+        : "Confirm each exact phrase that refers to the event, or ignore it. Use the example change for Sunday, 4 p.m., River Studio, then Preview changes. Nothing is applied yet.",
+    review:
+      "Inspect the full captions. Generate and review a replacement poster for changed image details; confirm the publication context for “Tomorrow”. Only ready, selected posts will run. You can leave others unresolved to see a partial result.",
+    results:
+      "Skipped posts keep their schedules. Download the repair report for a handoff, or make another change to reuse the confirmed phrases. These outcomes are simulated.",
+  };
+  return (
+    <aside className="sample-guide" aria-label="Sample walkthrough">
+      <span className="eyebrow">
+        TRY THE WORKFLOW · STEP {steps.findIndex((s) => s.id === c.stage) + 1}{" "}
+        OF 4
+      </span>
+      <h2>{titles[c.stage]}</h2>
+      <p>{instructions[c.stage]}</p>
+    </aside>
+  );
+}
+
+function ReceiptDownload() {
+  return (
+    <a
+      className="button subtle small"
+      href="/api/campaign/receipt"
+      download="changeboard-repair-report.md"
+    >
+      <Download size={15} /> Download repair report
+    </a>
   );
 }
 
@@ -1403,13 +1498,25 @@ function ConnectFacts({ campaign: c, action, busy }: SharedProps) {
                     onClick={() =>
                       setProposed({
                         ...c.facts,
-                        date: "2026-11-22",
-                        time: "16:00",
-                        venue: "River Studio",
+                        ...(c.revision === 0
+                          ? {
+                              date: "2026-11-22",
+                              time: "16:00",
+                              venue: "River Studio",
+                            }
+                          : {
+                              venue:
+                                c.facts.venue === "Garden Studio"
+                                  ? "River Studio"
+                                  : "Garden Studio",
+                            }),
                       })
                     }
                   >
-                    Use the example change <ArrowUpRight size={14} />
+                    {c.revision === 0
+                      ? "Use the example change"
+                      : "Try another venue"}{" "}
+                    <ArrowUpRight size={14} />
                   </button>
                 )}
               </div>
@@ -1669,6 +1776,7 @@ function ReviewChanges({ campaign: c, action, busy }: SharedProps) {
           <strong>{proposals.length}</strong> posts in this review{" "}
           <span className="muted">· {unresolved} needing attention</span>
         </span>
+        <ReceiptDownload />
         <button
           className="text-button"
           disabled={busy}
@@ -1867,7 +1975,7 @@ function ReviewChanges({ campaign: c, action, busy }: SharedProps) {
         >
           {draftMove
             ? `Move ${selected.length} post to Draft`
-            : `Apply updates to ${selected.length} ${selected.length === 1 ? "post" : "posts"}`}{" "}
+            : `${c.mode === "sample" ? "Simulate updates to" : "Apply updates to"} ${selected.length} ${selected.length === 1 ? "post" : "posts"}`}{" "}
           <ArrowRight size={17} />
         </button>
       </ActionBar>
@@ -2580,7 +2688,7 @@ function Results({ campaign: c, action, busy }: SharedProps) {
       )}
       <div className="section-top results-section-title">
         <h2>Individual outcomes</h2>
-        <span className="small-muted">Latest outcome for each post</span>
+        <ReceiptDownload />
       </div>
       <div className="results-list">
         {regular.map((operation) => (
@@ -2896,11 +3004,11 @@ function Settings({
               Disconnect Buffer
             </button>
           </>
-        ) : (
+        ) : state.connection.configured ? (
           <a className="button primary" href="/api/auth/buffer">
             Connect Buffer <ArrowUpRight size={15} />
           </a>
-        )}
+        ) : null}
         <p className="helper">
           Disconnecting removes the locally stored credentials. Your Buffer
           posts remain unchanged and scheduled. Revoke app access in Buffer

@@ -43,6 +43,7 @@ import { suggestBindings } from "../domain";
 import { BufferApiError } from "../buffer";
 import { poster, uploadImage } from "./assets";
 import { Worker } from "./worker";
+import { repairReceipt } from "./receipt";
 const hash = (s: string) => createHash("sha256").update(s).digest("hex");
 export interface Session {
   id: string;
@@ -179,6 +180,16 @@ export function createApp(db: Database, worker: Worker) {
       await respond(req, res);
     });
   app.get("/api/state", respond);
+  app.get("/api/campaign/receipt", async (req, res) => {
+    const c = requireCampaign(await campaignFor(db, req.session.userId));
+    res
+      .type("text/markdown; charset=utf-8")
+      .setHeader(
+        "Content-Disposition",
+        'attachment; filename="changeboard-repair-report.md"',
+      )
+      .send(repairReceipt(c));
+  });
   post("/api/sample", (req) => startSample(db, req.session.userId));
   post("/api/campaign/select", (req) => {
     const b = z

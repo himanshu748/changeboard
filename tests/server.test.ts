@@ -170,6 +170,44 @@ afterAll(async () => {
 });
 
 describe("server-backed campaign journey", () => {
+  it("downloads a session-owned repair handoff without applying the preview", async () => {
+    const owner = await session();
+    await setup(owner, ["sample-3"]);
+    await ready(owner);
+    const beforeVersion = owner.state.campaign!.version;
+    const response = await fetch(`${origin}/api/campaign/receipt`, {
+      headers: { Cookie: owner.cookie },
+    });
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/markdown");
+    expect(response.headers.get("content-disposition")).toContain(
+      "attachment;",
+    );
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    const text = await response.text();
+    expect(text).toContain("PROPOSALS ONLY");
+    expect(text).toContain("River Studio");
+    expect(text).not.toContain(owner.csrf);
+    await request(owner, "/api/state");
+    expect(owner.state.campaign!.version).toBe(beforeVersion);
+    expect(owner.state.campaign!.operations).toHaveLength(0);
+    const stranger = await session();
+    const blocked = await fetch(
+      `${origin}/api/campaign/receipt?campaignId=${owner.state.campaign!.id}`,
+      {
+        headers: { Cookie: stranger.cookie },
+      },
+    );
+    expect(blocked.status).toBe(404);
+    expect(await blocked.text()).not.toContain("Clay After Hours");
+    await apply(owner);
+    await settle(owner);
+    const finished = await fetch(`${origin}/api/campaign/receipt`, {
+      headers: { Cookie: owner.cookie },
+    });
+    expect(await finished.text()).toContain("Verified in sample");
+  });
+
   it("discovers a newly connected channel when the user confirms the same organization again", async () => {
     const s = await session();
     const userId = (

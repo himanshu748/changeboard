@@ -22,6 +22,39 @@
   --red-wash: #fff0ed;
   --canvas: #f7f5f0;
 }
+.sample-guide {
+  margin: 20px 0 28px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  border-radius: 6px;
+  background: #fff;
+}
+.sample-guide h2 {
+  margin: 7px 0;
+  font-size: 18px;
+}
+.sample-guide p {
+  max-width: 85ch;
+  color: var(--muted);
+  font-size: 14px;
+}
+.hero-availability {
+  max-width: 42ch;
+  margin-top: 14px;
+}
+.review-heading-row {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+@media (max-width: 480px) {
+  .sample-guide {
+    padding: 16px;
+  }
+  .review-heading-row > a {
+    margin-right: auto;
+  }
+}
 * {
   box-sizing: border-box;
 }

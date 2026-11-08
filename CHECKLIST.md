@@ -39,3 +39,14 @@
 - Phase 6: local accessibility/mobile/docs/asset drafts prepared; live release, user validation and working provider video **blocked**.
 
 The entire project is not complete while these core live gates remain blocked.
+
+## 8 November 2026 — scoped additions
+
+- [x] Repair report: proposal/outcome separation, skipped/uncertain warnings, literal caption rendering; four behavior tests and an HTTP/SQL download/ownership/no-mutation test.
+- [x] First-use guidance: per-stage sample task, sample apply label, repeat-venue example, usable connection explanation when OAuth is unconfigured, early warning for disabled live write formats.
+- [x] Current local validation: 84 tests, TypeScript/production build, 1440px/375px Chromium walkthrough, keyboard/reduced-motion checks, report downloads and persisted partial sample result.
+- [x] Current official requirements mapped in [judge walkthrough](docs/judge-walkthrough.md); November additions separated in [build log](docs/build-log.md).
+- [ ] Nonempty live repair and independent-account validation; no live writes were performed in this pass.
+- [ ] Durable public app, live ≤2-minute video, verified registration/entrant details and submission.
+
+These additions do not clear the original live release gates.

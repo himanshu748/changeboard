@@ -1,7 +1,8 @@
 # Internal application contract
 
-All API routes return JSON. Errors `{error: string}`. GET /api/state returns AppState (src/shared.ts), establishes httpOnly session and CSRF token. Every POST/PATCH/DELETE sends x-csrf-token and same-origin credentials; CSRF is returned only to the owning same-origin session. Mutations return refreshed AppState unless noted. UI should consume returned state, never store tokens or account data in localStorage. All local IDs authorized server-side.
+API routes return JSON except the report download described below. Errors `{error: string}`. GET /api/state returns AppState (src/shared.ts), establishes httpOnly session and CSRF token. Every POST/PATCH/DELETE sends x-csrf-token and same-origin credentials; CSRF is returned only to the owning same-origin session. Mutations return refreshed AppState unless noted. UI should consume returned state, never store tokens or account data in localStorage. All local IDs authorized server-side.
 
+- GET /api/campaign/receipt downloads the owning session’s active campaign as a Markdown attachment with `Cache-Control: no-store`. It contains proposals and latest recorded outcomes, with simulation/verification boundaries and warnings for skipped/uncertain operations. No provider call or mutation occurs. No caller-supplied campaign ID is accepted. Captions are rendered as literal fenced text; users must review campaign content before sharing.
 - POST /api/sample {} creates fictional sample, stage choose.
 - POST /api/campaign/select {postIds:string[], announcementId?:string} selects max six, stage facts. Campaign is current session's resource.
 - POST /api/campaign/facts {facts:Facts, confirmed:boolean, name?:string} confirms current source facts; recomputes suggestions (only before an approved change).
